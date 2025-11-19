@@ -15,6 +15,12 @@ class ViajesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+
+    public function dashboard()
+    {
+        // Render the dashboard view
+        $this->render('dashboard');
+    }
     public function index()
     {
         $query = $this->Viajes->find()

@@ -1,0 +1,62 @@
+/* Estilo de login */
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+    background: #eef2f6;
+    padding: 20px;
+}
+.login-box {
+    width: 360px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(11,35,64,0.08);
+    text-align: left;
+}
+.login-box h2 {
+    margin: 0 0 20px 0;
+    color: #1b263b;
+    font-size: 1.25rem;
+}
+.form-login .input,
+.form-login input[type="text"],
+.form-login input[type="password"],
+.form-login input[type="email"],
+.form-login select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border: 1px solid #e3e8ee;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.form-actions {
+    text-align: right;
+    margin-top: 6px;
+}
+.btn-primary {
+    background: #2d4059;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+
+}
+.btn-primary:hover {
+    background: #24354a;
+}
+.login-footer {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #6b7a8a;
+}
+.login-footer a {
+    color: #2d4059;
+    text-decoration: none;
+}
