@@ -1,3 +1,149 @@
+/* Estilo de dashboard */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+	background: #f4f6f8;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	color: #222;
+	 min-height: 100vh;
+	padding: 20px;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background: #2d4059;
+	color: #fff;
+	padding: 20px 0;
+	text-align: center;
+	font-size: 2rem;
+	letter-spacing: 2px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+	width: 100%;
+}
+nav {
+	background: #3f5167;
+	padding: 10px 0;
+	text-align: center;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+	margin: 0 15px;
+	font-size: 1.1rem;
+	transition: color 0.3s;
+}
+
+nav a:hover {
+	color: #f4f6f8;
+}
+
+.dashboard-layout {
+	display: flex;
+	min-height: auto;
+}
+.summary-stats {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+	background: #ffd460;
+	color: #2d4059;
+	padding: 20px;
+	border-radius: 12px;
+	min-width: 180px;
+	text-align: center;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+	transition: box-shadow 0.2s, transform 0.2s;
+	margin-bottom: 20px;
+}
+.stat-box:hover {
+	box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+	transform: translateY(-4px) scale(1.04);
+	cursor: pointer;
+}
+
+.stat-number {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.sidebar-menu {
+	width: 250px;
+	background: #1b263b;
+	color: #fff;
+	min-height: 100vh;
+	padding-top: 50px;
+	box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+}
+
+.sidebar-menu nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sidebar-menu nav ul li {
+	padding: 15px 20px;
+	border-bottom: 1px solid #2d4059;
+}
+
+.sidebar-menu nav ul li a {
+	color : #fff;
+	text-decoration: none;
+	display: block;
+}
+
+.sidebar-menu nav ul li a:hover {
+	background: #3f5167;
+}
+
+.dashboard-content {
+	flex: 1;
+	padding: 30px;
+	background: #f4f6f8;
+}
+
+.container {
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+	border-radius: 8px;
+}
+.container h2 {
+	margin-top: 0;
+	padding: 20px;
+	border-bottom: 1px solid #eee;
+	font-size: 1.5rem;
+	color: #333;
+}
+.container .content {
+	padding: 20px;
+}
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+.table th, .table td {
+	padding: 12px 15px;
+	border: 1px solid #ddd;
+	text-align: left;
+}
+.table th {
+	background: #f4f6f8;
+}
+
 /* Estilo de login */
 .login-page {
     display: flex;
