@@ -1,6 +1,6 @@
-<title>Usuarios</title>
+<title>Admins</title>
 <header>
-    Usuarios
+    Panel de Administradores
 </header>
 
 <div class="dashboard-layout">
