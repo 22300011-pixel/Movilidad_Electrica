@@ -55,23 +55,6 @@ nav a:hover {
     flex-wrap: wrap;
 }
 
-.stat-box {
-	background: #ffd460;
-	color: #2d4059;
-	padding: 20px;
-	border-radius: 12px;
-	min-width: 180px;
-	text-align: center;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-	transition: box-shadow 0.2s, transform 0.2s;
-	margin-bottom: 20px;
-}
-.stat-box:hover {
-	box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-	transform: translateY(-4px) scale(1.04);
-	cursor: pointer;
-}
-
 .stat-number {
 	font-size: 2rem;
 	font-weight: bold;
