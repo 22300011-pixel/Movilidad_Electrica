@@ -12,11 +12,12 @@ use App\Controller\AppController;
  */
 class ViajesController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
+
+    public function home()
+    {
+        // Aqui no hay nada
+    }
+
     public function index()
     {
         $query = $this->Viajes->find()
