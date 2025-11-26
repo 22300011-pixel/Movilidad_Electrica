@@ -13,14 +13,21 @@ class AppController extends Controller
         parent::initialize();
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
+
+        // acciones públicas que no requieren login (añadir las que necesite)
+        $this->Authentication->addUnauthenticatedActions([
+            'display', // Pages::display (home)
+            'index', 'view', // listados y detalles
+            'login', 'register', 'forgotPassword'
+        ]);
     }
 
     public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
 
-        $action = $this->request->getParam('action');
-        $controller = $this->request->getParam('controller');
+        $action = strtolower((string)$this->request->getParam('action'));
+        $controller = strtolower((string)$this->request->getParam('controller'));
         $identity = $this->Authentication->getIdentity();
 
         // Administrador: acceso total
@@ -31,15 +38,15 @@ class AppController extends Controller
         // Cliente: accesos restringidos a controladores/acciones específicas
         if ($identity && (string)$identity->rol === 'Cliente') {
             $allowed = [
-                // controladores => acciones permitidas para Cliente
-                'MetodosPago' => ['index', 'view', 'select', 'pay'], // seleccionar y pagar
-                'Vehiculos'   => ['index', 'view', 'search'],        // identificar vehículos disponibles
-                'Viajes'      => ['add', 'end', 'finish', 'index', 'view'], // crear y terminar viajes
-                'Usuarios'    => ['view', 'edit', 'profile']         // gestión de su propio perfil
+                // controladores => acciones permitidas para Cliente (todo en minúsculas)
+                'metodospago' => ['index', 'view', 'select', 'pay'],
+                'vehiculos'   => ['index', 'view', 'search'],
+                'viajes'      => ['add', 'end', 'finish', 'index', 'view'],
+                'users'       => ['view', 'edit', 'profile']
             ];
 
             // Permitir edición/visualización solo de su propio perfil
-            if ($controller === 'Usuarios' && in_array($action, ['edit', 'view', 'profile'], true)) {
+            if ($controller === 'users' && in_array($action, ['edit', 'view', 'profile'], true)) {
                 $targetId = $this->request->getParam('pass.0') ?? $this->request->getQuery('id') ?? $this->request->getParam('id');
                 if ($targetId !== null && (string)$targetId !== (string)$identity->id) {
                     $this->Flash->error(__('No tiene permisos para editar/visualizar otro perfil.'));
@@ -61,9 +68,10 @@ class AppController extends Controller
         // Público (no registrado): accesos limitados
         if (!$identity) {
             $guestAllowed = [
-                'Pages'    => ['display', 'home', 'index'],
-                'Users'    => ['login', 'register', 'forgotPassword'],
-                'Vehiculos'=> ['index', 'view'] // ver vehículos disponibles
+                'pages'     => ['display', 'home', 'index'],
+                'users'     => ['login', 'register', 'forgotpassword', 'forgot_password', 'forgot-password'],
+                'vehiculos' => ['index', 'view'],
+                'viajes'    => ['index', 'view']
             ];
 
             if (isset($guestAllowed[$controller]) && in_array($action, $guestAllowed[$controller], true)) {
