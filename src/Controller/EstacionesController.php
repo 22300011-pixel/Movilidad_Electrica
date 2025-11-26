@@ -30,6 +30,13 @@ class EstacionesController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
+
+     public function home()
+    {
+        // Aqui no hay nada
+    }
+
     public function view($id = null)
     {
         $estacion = $this->Estaciones->get($id, contain: ['Vehiculos', 'Viajes']);

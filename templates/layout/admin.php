@@ -18,7 +18,7 @@
     <div class="container">
         <header class="app-header">
             <nav class="main-nav">
-                <?= $this->Html->link(__('Inicio'), ['controller' => 'Viajes', 'action' => 'dashboard']) ?> |
+                <?= $this->Html->link(__('Inicio'), ['controller' => 'Viajes', 'action' => 'home']) ?> |
                 <?= $this->Form->postLink(__('Cerrar sesión'), ['controller' => 'Users', 'action' => 'logout'], ['confirm' => __('¿Salir de la sesión?')]) ?>
             </nav>
         </header>

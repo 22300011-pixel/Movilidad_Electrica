@@ -1,16 +1,144 @@
-/* Estilo de home */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-	background: #f4f6f8;
-	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	color: #222;
-	 min-height: 100vh;
-	padding: 20px;
-	margin: 0;
-	padding: 0;
-}
+ body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+			background-color: pink;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 1.5rem 2rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        /* Layout principal */
+        .dashboard-layout {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+        
+        /* Sidebar */
+        .sidebar-menu {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar-menu nav ul {
+            list-style: none;
+            padding: 1.5rem 0;
+        }
+        
+        .sidebar-menu nav li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu nav a {
+            display: block;
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-left: 4px solid transparent;
+        }
+        
+        .sidebar-menu nav a:hover {
+            background-color: #34495e;
+            border-left: 4px solid #3498db;
+            padding-left: 2rem;
+        }
+        
+        .sidebar-menu nav a:active {
+            background-color: #2980b9;
+        }
+        
+        /* Contenido principal */
+        .dashboard-content {
+            flex: 1;
+            padding: 2rem;
+            background-color: #f5f7fa;
+            overflow-y: auto;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .container h1 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-layout {
+                flex-direction: column;
+            }
+            
+            .sidebar-menu {
+                width: 100%;
+                height: auto;
+            }
+            
+            .sidebar-menu nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                padding: 1rem;
+            }
+            
+            .sidebar-menu nav li {
+                flex: 1 0 50%;
+                margin-bottom: 0;
+            }
+            
+            .sidebar-menu nav a {
+                text-align: center;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                padding: 0.8rem 0.5rem;
+            }
+            
+            .sidebar-menu nav a:hover {
+                border-left: none;
+                border-bottom: 3px solid #3498db;
+                padding-left: 0.5rem;
+            }
+            
+            .dashboard-content {
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 1rem;
+                font-size: 1.4rem;
+            }
+            
+            .sidebar-menu nav li {
+                flex: 1 0 100%;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .container h1 {
+                font-size: 1.5rem;
+            }
+        }
