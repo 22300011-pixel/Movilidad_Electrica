@@ -23,6 +23,7 @@ class AppController extends Controller
             'login', 'register', 'forgotPassword'
         ]);
 
+
     }
 
     public function beforeFilter(EventInterface $event): void

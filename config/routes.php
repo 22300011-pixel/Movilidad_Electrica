@@ -11,11 +11,13 @@ return function (RouteBuilder $routes): void {
 
     // Rutas de administración (/admin)
     $routes->prefix('Admin', function (RouteBuilder $routes): void {
+
         // /admin -> Admin/Viajes::dashboard
         $routes->connect('/', [
             'controller' => 'Viajes',
             'action'     => 'dashboard',
         ]);
+
 
         $routes->fallbacks(DashedRoute::class);
     });
