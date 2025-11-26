@@ -15,15 +15,14 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
 
-<<<<<<< Updated upstream
+
         // acciones públicas que no requieren login (añadir las que necesite)
         $this->Authentication->addUnauthenticatedActions([
             'display', // Pages::display (home)
             'index', 'view', // listados y detalles
             'login', 'register', 'forgotPassword'
         ]);
-=======
->>>>>>> Stashed changes
+
     }
 
     public function beforeFilter(EventInterface $event): void
