@@ -15,7 +15,7 @@ return function (RouteBuilder $routes): void {
         // /admin -> Admin/Viajes::dashboard
         $routes->connect('/', [
             'controller' => 'Viajes',
-            'action'     => 'dashboard',
+            'action'     => 'home',
         ]);
 
 
@@ -28,7 +28,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/', [
             'controller' => 'Pages',
             'action'     => 'display',
-            'home',
+            'dashboard',
         ]);
 
         // Rutas públicas de páginas

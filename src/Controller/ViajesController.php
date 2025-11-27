@@ -3,24 +3,15 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-/**
- * Viajes Controller
- *
- * @property \App\Model\Table\ViajesTable $Viajes
- */
 class ViajesController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
 
     public function dashboard()
     {
         // Render the dashboard view
         $this->render('dashboard');
     }
+    
     public function index()
     {
         $query = $this->Viajes->find()
@@ -30,24 +21,12 @@ class ViajesController extends AppController
         $this->set(compact('viajes'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Viaje id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $viaje = $this->Viajes->get($id, contain: ['Users', 'Vehiculos', 'MetodoDePagos', 'Estaciones', 'Promociones']);
         $this->set(compact('viaje'));
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $viaje = $this->Viajes->newEmptyEntity();
