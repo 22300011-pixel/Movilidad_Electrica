@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use Cake\Controller\Controller;
+use Cake\Controller\Controller as BaseAppController;
 
-class AppController extends Controller
+class AppController extends BaseAppController
 {
     public function initialize(): void
     {

@@ -1,6 +1,5 @@
-<?php
-$cakeDescription = 'Movilidad Eléctrica Cereza';
-?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,7 +24,6 @@ $cakeDescription = 'Movilidad Eléctrica Cereza';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-
     <header class="nv-gradient sticky-top shadow-sm py-2">
         <div class="container d-flex align-items-center justify-content-between">
             <a class="brand-mark" href="<?= $this->Url->build('/') ?>">
