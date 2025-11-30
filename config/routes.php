@@ -26,8 +26,8 @@ return function (RouteBuilder $routes): void {
     $routes->scope('/', function (RouteBuilder $builder): void {
         // Página principal pública
         $builder->connect('/', [
-            'controller' => 'Pages',
-            'action'     => 'display',
+            'controller' => 'Viajes',
+            'action'     => 'dashboard',
             'dashboard',
         ]);
 
