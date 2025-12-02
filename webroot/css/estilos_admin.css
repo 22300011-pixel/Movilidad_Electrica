@@ -12,7 +12,7 @@ body {
 }
 
 header {
-    background:linear-gradient(135deg, #1a936f 0%, #114b5f 100%);
+    background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -32,85 +32,145 @@ header::after {
 }
 
 .dashboard-layout {
-    display: flex;
-}
+        display: flex;
+    }
 
-.sidebar-menu {
-    width: 250px;
-    background: #114b5f;
-    color: #fff;
-    min-height: 100vh;
-    padding-top: 30px;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-}
+    .sidebar-menu {
+        width: 250px;
+        background: #2c3e50;
+        color: white;
+        padding: 20px 0;
+        min-height: 100vh;
+        position: sticky;
+        top: 0;
+    }
 
-.sidebar-menu nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+    .sidebar-menu nav ul {
+        list-style: none;
+    }
 
-.sidebar-menu nav ul li {
-    padding: 15px 20px;
-    border-bottom: 1px solid #1a936f;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
+    .sidebar-menu nav ul li {
+        padding: 0;
+    }
+    
+    .dashboard-content {
+        flex: 1;
+        padding: 40px;
+        background: #f5f5f5;
+        min-height: 100vh;
+    }
 
-.sidebar-menu nav ul li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background-color: #88d498;
-    transform: scaleY(0);
-    transition: transform 0.3s ease;
-}
+    .dashboard-content h1 {
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 32px;
+        font-weight: 700;
+    }
 
-.sidebar-menu nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    transition: color 0.3s ease;
-}
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
 
-.sidebar-menu nav ul li:hover {
-    background: rgba(26, 147, 111, 0.2);
-}
+    .card {
+        background: white;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-.sidebar-menu nav ul li:hover a {
-    color: #88d498;
-}
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
 
-.dashboard-content {
-    flex: 1;
-    padding: 30px;
-    background: #f4f6f8;
-}
+    .card h2 {
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 20px;
+        font-weight: 600;
+    }
 
-.container {
-    margin: 0 auto;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    border-radius: 8px;
-    overflow: hidden;
-}
+    .card p {
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
 
-.container h2 {
-    margin-top: 0;
-    padding: 20px;
-    border-bottom: 1px solid #eee;
-    font-size: 1.5rem;
-    color: #114b5f;
-    background: #f8f9fa;
-}
+    .card-icon {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
 
-.container .content {
-    padding: 20px;
-}
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background 0.3s;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .btn:hover {
+        background: #2980b9;
+    }
+
+    .btn-primary {
+        background: #3498db;
+    }
+
+    .btn-primary:hover {
+        background: #2980b9;
+    }
+
+    .btn-success {
+        background: #27ae60;
+    }
+
+    .btn-success:hover {
+        background: #229954;
+    }
+
+    .btn-warning {
+        background: #f39c12;
+    }
+
+    .btn-warning:hover {
+        background: #e67e22;
+    }
+
+    .btn-danger {
+        background: #e74c3c;
+    }
+
+    .btn-danger:hover {
+        background: #c0392b;
+    }
+
+    .feature-highlight {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+
+    .feature-highlight h2 {
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    .feature-highlight p {
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 15px;
+    }
 
 /*Estilos Index */
 .index.content {

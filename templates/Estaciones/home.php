@@ -33,22 +33,24 @@
     </script>
 
     <script>
-        // Inicializar el mapa centrado en una ubicación específica
-        var map = L.map('map').setView([40.4168, -3.7038], 13); // Madrid, España
+        // Ubicación de la ciudad (centro del mapa)
+        var ubicacionCiudad = [20.67521809089044, -101.3458032268472];
 
-        // Añadir capa de tiles de OpenStreetMap
+        // Inicializar el mapa centrado en la ubicación de la ciudad
+        var map = L.map('map').setView(ubicacionCiudad, 13);
+
+       
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        // Datos de ejemplo de estaciones de carga
+        // Estaciones de carga 
         var estacionesCarga = [
-            {nombre: "Estación Centro", lat: 40.4168, lng: -3.7038, tipo: "Rápida"},
-            {nombre: "Estación Norte", lat: 40.4380, lng: -3.6940, tipo: "Normal"},
-            {nombre: "Estación Sur", lat: 40.4000, lng: -3.7000, tipo: "Rápida"},
-            {nombre: "Estación Este", lat: 40.4200, lng: -3.6700, tipo: "Normal"},
-            {nombre: "Estación Oeste", lat: 40.4100, lng: -3.7300, tipo: "Rápida"}
+            {nombre: "Centro Histórico", lat: 20.67280073030827, lng: -101.34709604653206, tipo: "Rápida"}, 
+            {nombre: "Plaza Cibeles", lat: 20.680420943518104, lng: -101.37994977920148, tipo: "Normal"},
+            {nombre: "Centro Comercial Fragaria", lat: 20.709297021957408, lng: -101.35130831823378, tipo: "Rápida"},
+            {nombre: "Parque Irekua", lat: 20.685762409146754, lng: -101.35718958973689, tipo: "Normal"}
         ];
 
         // Iconos personalizados para diferentes tipos de estaciones
@@ -70,13 +72,27 @@
             shadowSize: [41, 41]
         });
 
+        // Añadir marcador para la ubicación de la ciudad (con icono diferente)
+        var iconoCiudad = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        L.marker(ubicacionCiudad, {icon: iconoCiudad})
+            .addTo(map)
+            .bindPopup(`<b>Ubicación de la Ciudad</b><br>Coordenadas: ${ubicacionCiudad[0].toFixed(6)}, ${ubicacionCiudad[1].toFixed(6)}`);
+
         // Añadir marcadores para cada estación de carga
         estacionesCarga.forEach(function(estacion) {
             var icono = estacion.tipo === "Rápida" ? iconoRapida : iconoNormal;
             
             L.marker([estacion.lat, estacion.lng], {icon: icono})
                 .addTo(map)
-                .bindPopup(`<b>${estacion.nombre}</b><br>Tipo: ${estacion.tipo}`);
+                .bindPopup(`<b>${estacion.nombre}</b><br>Tipo: ${estacion.tipo}<br>Coordenadas: ${estacion.lat.toFixed(6)}, ${estacion.lng.toFixed(6)}`);
         });
 
         // Función para manejar clics en el mapa
