@@ -15,15 +15,12 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
 
-
-        // acciones públicas que no requieren login (añadir las que necesite)
+        // Acciones públicas que no requieren login
         $this->Authentication->addUnauthenticatedActions([
             'display', // Pages::display (home)
-            'index', 'view', // listados y detalles
-            'login', 'register', 'forgotPassword'
+            'index', 'view', // Listados y detalles
+            'login', 'register', 'forgotPassword', 'add'
         ]);
-
-
     }
 
     public function beforeFilter(EventInterface $event): void
@@ -32,9 +29,34 @@ class AppController extends Controller
 
         $action = strtolower((string)$this->request->getParam('action'));
         $controller = strtolower((string)$this->request->getParam('controller'));
+        
+        // Obtenemos el prefijo (ej. 'Admin') para proteger esas rutas
+        $prefix = $this->request->getParam('prefix');
+        
         $identity = $this->Authentication->getIdentity();
 
-        // Administrador: acceso total
+        // --- BLOQUEO DE SEGURIDAD ADMIN ---
+        // Si intenta entrar a una ruta /admin/... y NO es Administrador
+        if ($prefix === 'Admin') {
+            if (!$identity || (string)$identity->rol !== 'Administrador') {
+                $this->Flash->error(__('Acceso denegado. Área exclusiva de administradores.'));
+                
+                // CORRECCIÓN: Llamar a redirect sin 'return' delante, y luego hacer return;
+                if ($identity) {
+                    // Si es cliente, al dashboard
+                    $this->redirect(['prefix' => false, 'controller' => 'Viajes', 'action' => 'dashboard']);
+                    return; 
+                }
+                
+                // Si no está logueado, al login
+                $this->redirect(['prefix' => false, 'controller' => 'Users', 'action' => 'login']);
+                return;
+            }
+            // Si es admin en ruta admin, permitir todo
+            return;
+        }
+
+        // Administrador: acceso total (fuera del prefijo Admin también)
         if ($identity && (string)$identity->rol === 'Administrador') {
             return;
         }
@@ -42,16 +64,17 @@ class AppController extends Controller
         // Cliente: accesos restringidos a controladores/acciones específicas
         if ($identity && (string)$identity->rol === 'Cliente') {
             $allowed = [
-                // controladores => acciones permitidas para Cliente (todo en minúsculas)
+                // Controladores => acciones permitidas para Cliente (todo en minúsculas)
                 'metodospago' => ['index', 'view', 'select', 'pay'],
                 'vehiculos'   => ['index', 'view', 'search'],
-                'viajes'      => ['add', 'end', 'finish', 'index', 'view'],
+                'viajes'      => ['add', 'end', 'finish', 'index', 'view', 'dashboard'], 
                 'users'       => ['view', 'edit', 'profile']
             ];
 
             // Permitir edición/visualización solo de su propio perfil
             if ($controller === 'users' && in_array($action, ['edit', 'view', 'profile'], true)) {
                 $targetId = $this->request->getParam('pass.0') ?? $this->request->getQuery('id') ?? $this->request->getParam('id');
+                // Si intenta ver otro ID que no sea el suyo
                 if ($targetId !== null && (string)$targetId !== (string)$identity->id) {
                     $this->Flash->error(__('No tiene permisos para editar/visualizar otro perfil.'));
                     $this->redirect('/');
@@ -73,7 +96,7 @@ class AppController extends Controller
         if (!$identity) {
             $guestAllowed = [
                 'pages'     => ['display', 'home', 'index'],
-                'users'     => ['login', 'register', 'forgotpassword', 'forgot_password', 'forgot-password'],
+                'users'     => ['login', 'register', 'forgotpassword', 'forgot_password', 'forgot-password', 'add'],
                 'vehiculos' => ['index', 'view'],
                 'viajes'    => ['index', 'view']
             ];

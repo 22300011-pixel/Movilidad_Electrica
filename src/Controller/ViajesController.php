@@ -12,6 +12,7 @@ class ViajesController extends AppController
         $this->render('dashboard');
     }
     
+    
     public function index()
     {
         $query = $this->Viajes->find()
