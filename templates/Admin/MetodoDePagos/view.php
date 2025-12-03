@@ -7,11 +7,11 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Metodo De Pago'), ['action' => 'edit', $metodoDePago->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Metodo De Pago'), ['action' => 'delete', $metodoDePago->id], ['confirm' => __('Are you sure you want to delete # {0}?', $metodoDePago->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Metodo De Pagos'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Metodo De Pago'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Editar Metodo De Pago'), ['action' => 'edit', $metodoDePago->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Eliminar Metodo De Pago'), ['action' => 'delete', $metodoDePago->id], ['confirm' => __('Seguro que quiere eliminar # {0}?', $metodoDePago->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Lista Metodo De Pagos'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Nuevo Metodo De Pago'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
@@ -60,7 +60,7 @@
                 </tr>
             </table>
             <div class="related">
-                <h4><?= __('Related Viajes') ?></h4>
+                <h4><?= __('Viajes') ?></h4>
                 <?php if (!empty($metodoDePago->viajes)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -94,14 +94,14 @@
                             <td><?= h($viaje->created) ?></td>
                             <td><?= h($viaje->modified) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Viajes', 'action' => 'view', $viaje->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Viajes', 'action' => 'edit', $viaje->id]) ?>
+                                <?= $this->Html->link(__('Ver'), ['controller' => 'Viajes', 'action' => 'view', $viaje->id]) ?>
+                                <?= $this->Html->link(__('Editar'), ['controller' => 'Viajes', 'action' => 'edit', $viaje->id]) ?>
                                 <?= $this->Form->postLink(
-                                    __('Delete'),
+                                    __('Eliminar'),
                                     ['controller' => 'Viajes', 'action' => 'delete', $viaje->id],
                                     [
                                         'method' => 'delete',
-                                        'confirm' => __('Are you sure you want to delete # {0}?', $viaje->id),
+                                        'confirm' => __('Seguro que quiere eliminar # {0}?', $viaje->id),
                                     ]
                                 ) ?>
                             </td>

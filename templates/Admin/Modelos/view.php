@@ -7,11 +7,11 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Modelo'), ['action' => 'edit', $modelo->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Modelo'), ['action' => 'delete', $modelo->id], ['confirm' => __('Are you sure you want to delete # {0}?', $modelo->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Modelos'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Modelo'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Editar Modelo'), ['action' => 'edit', $modelo->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Eliminar Modelo'), ['action' => 'delete', $modelo->id], ['confirm' => __('Seguro que quiere eliminar # {0}?', $modelo->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Lista de Modelos'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Nuevo Modelo'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
@@ -56,7 +56,7 @@
                 </tr>
             </table>
             <div class="related">
-                <h4><?= __('Related Fotos') ?></h4>
+                <h4><?= __('Fotos') ?></h4>
                 <?php if (!empty($modelo->fotos)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -67,7 +67,7 @@
                             <th><?= __('Modelo Id') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <th class="actions"><?= __('Acciones') ?></th>
                         </tr>
                         <?php foreach ($modelo->fotos as $foto) : ?>
                         <tr>
@@ -78,14 +78,14 @@
                             <td><?= h($foto->created) ?></td>
                             <td><?= h($foto->modified) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Fotos', 'action' => 'view', $foto->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Fotos', 'action' => 'edit', $foto->id]) ?>
+                                <?= $this->Html->link(__('Ver'), ['controller' => 'Fotos', 'action' => 'view', $foto->id]) ?>
+                                <?= $this->Html->link(__('Editar'), ['controller' => 'Fotos', 'action' => 'edit', $foto->id]) ?>
                                 <?= $this->Form->postLink(
-                                    __('Delete'),
+                                    __('Eliminar'),
                                     ['controller' => 'Fotos', 'action' => 'delete', $foto->id],
                                     [
                                         'method' => 'delete',
-                                        'confirm' => __('Are you sure you want to delete # {0}?', $foto->id),
+                                        'confirm' => __('Seguro que quiere eliminar # {0}?', $foto->id),
                                     ]
                                 ) ?>
                             </td>
@@ -96,7 +96,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Vehiculos') ?></h4>
+                <h4><?= __('Vehiculos') ?></h4>
                 <?php if (!empty($modelo->vehiculos)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -111,7 +111,7 @@
                             <th><?= __('Modelo Id') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <th class="actions"><?= __('Acciones') ?></th>
                         </tr>
                         <?php foreach ($modelo->vehiculos as $vehiculo) : ?>
                         <tr>
@@ -126,14 +126,14 @@
                             <td><?= h($vehiculo->created) ?></td>
                             <td><?= h($vehiculo->modified) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Vehiculos', 'action' => 'view', $vehiculo->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Vehiculos', 'action' => 'edit', $vehiculo->id]) ?>
+                                <?= $this->Html->link(__('Ver'), ['controller' => 'Vehiculos', 'action' => 'view', $vehiculo->id]) ?>
+                                <?= $this->Html->link(__('Editar'), ['controller' => 'Vehiculos', 'action' => 'edit', $vehiculo->id]) ?>
                                 <?= $this->Form->postLink(
-                                    __('Delete'),
+                                    __('Eliminar'),
                                     ['controller' => 'Vehiculos', 'action' => 'delete', $vehiculo->id],
                                     [
                                         'method' => 'delete',
-                                        'confirm' => __('Are you sure you want to delete # {0}?', $vehiculo->id),
+                                        'confirm' => __('Seguro que quiere eliminar # {0}?', $vehiculo->id),
                                     ]
                                 ) ?>
                             </td>

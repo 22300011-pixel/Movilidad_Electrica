@@ -12,15 +12,15 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Viajes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Lista de Viajes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
         <div class="viajes form content">
             <?= $this->Form->create($viaje) ?>
             <fieldset>
-                <legend><?= __('Add Viaje') ?></legend>
+                <legend><?= __('Agregar Viaje') ?></legend>
                 <?php
                     echo $this->Form->control('hora_inicio');
                     echo $this->Form->control('hora_fin');
@@ -33,7 +33,7 @@
                     echo $this->Form->control('promocion_id', ['options' => $promociones, 'empty' => true]);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Guardar')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

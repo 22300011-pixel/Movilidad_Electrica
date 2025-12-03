@@ -7,20 +7,20 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
             <?= $this->Form->postLink(
-                __('Delete'),
+                __('Borrar Estacion'),
                 ['action' => 'delete', $estacion->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $estacion->id), 'class' => 'side-nav-item']
+                ['confirm' => __('Seguro que quieres eliminar # {0}?', $estacion->id), 'class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(__('List Estaciones'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Lista de Estaciones'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
         <div class="estaciones form content">
             <?= $this->Form->create($estacion) ?>
             <fieldset>
-                <legend><?= __('Edit Estacion') ?></legend>
+                <legend><?= __('Editar Estacion') ?></legend>
                 <?php
                     echo $this->Form->control('nombre');
                     echo $this->Form->control('direccion');
@@ -29,7 +29,7 @@
                     echo $this->Form->control('capacidad');
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Guardar')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

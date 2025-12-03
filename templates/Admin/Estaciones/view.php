@@ -7,11 +7,11 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Estacion'), ['action' => 'edit', $estacion->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Estacion'), ['action' => 'delete', $estacion->id], ['confirm' => __('Are you sure you want to delete # {0}?', $estacion->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Estaciones'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Estacion'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Editar Estacion'), ['action' => 'edit', $estacion->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Borra Estacion'), ['action' => 'delete', $estacion->id], ['confirm' => __('Seguro que quiere eliminar # {0}?', $estacion->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Lista de Estaciones'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Nueva Estacion'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
@@ -54,7 +54,7 @@
                 </blockquote>
             </div>
             <div class="related">
-                <h4><?= __('Related Vehiculos') ?></h4>
+                <h4><?= __('Vehiculos') ?></h4>
                 <?php if (!empty($estacion->vehiculos)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -87,11 +87,11 @@
                                 <?= $this->Html->link(__('View'), ['controller' => 'Vehiculos', 'action' => 'view', $vehiculo->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Vehiculos', 'action' => 'edit', $vehiculo->id]) ?>
                                 <?= $this->Form->postLink(
-                                    __('Delete'),
+                                    __('Borrar'),
                                     ['controller' => 'Vehiculos', 'action' => 'delete', $vehiculo->id],
                                     [
                                         'method' => 'delete',
-                                        'confirm' => __('Are you sure you want to delete # {0}?', $vehiculo->id),
+                                        'confirm' => __('Seguro que quieres eliminar # {0}?', $vehiculo->id),
                                     ]
                                 ) ?>
                             </td>
@@ -102,7 +102,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Viajes') ?></h4>
+                <h4><?= __('Viajes') ?></h4>
                 <?php if (!empty($estacion->viajes)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -119,7 +119,7 @@
                             <th><?= __('Promocion Id') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <th class="actions"><?= __('Acciones') ?></th>
                         </tr>
                         <?php foreach ($estacion->viajes as $viaje) : ?>
                         <tr>
@@ -136,14 +136,14 @@
                             <td><?= h($viaje->created) ?></td>
                             <td><?= h($viaje->modified) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Viajes', 'action' => 'view', $viaje->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Viajes', 'action' => 'edit', $viaje->id]) ?>
+                                <?= $this->Html->link(__('Ver'), ['controller' => 'Viajes', 'action' => 'view', $viaje->id]) ?>
+                                <?= $this->Html->link(__('Editar'), ['controller' => 'Viajes', 'action' => 'edit', $viaje->id]) ?>
                                 <?= $this->Form->postLink(
-                                    __('Delete'),
+                                    __('Borrar'),
                                     ['controller' => 'Viajes', 'action' => 'delete', $viaje->id],
                                     [
                                         'method' => 'delete',
-                                        'confirm' => __('Are you sure you want to delete # {0}?', $viaje->id),
+                                        'confirm' => __('Seguro que quieres liminar # {0}?', $viaje->id),
                                     ]
                                 ) ?>
                             </td>

@@ -7,11 +7,11 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Foto'), ['action' => 'edit', $foto->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Foto'), ['action' => 'delete', $foto->id], ['confirm' => __('Are you sure you want to delete # {0}?', $foto->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Fotos'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Foto'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Editar Foto'), ['action' => 'edit', $foto->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Eliminar Foto'), ['action' => 'delete', $foto->id], ['confirm' => __('Seguro que quiere eliminar # {0}?', $foto->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Lista de Fotos'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Nueva Foto'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">

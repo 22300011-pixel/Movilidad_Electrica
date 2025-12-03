@@ -8,15 +8,15 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Metodo De Pagos'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Lista de Metodo De Pagos'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
         <div class="metodoDePagos form content">
             <?= $this->Form->create($metodoDePago) ?>
             <fieldset>
-                <legend><?= __('Add Metodo De Pago') ?></legend>
+                <legend><?= __('Agregar Metodo De Pago') ?></legend>
                 <?php
                     echo $this->Form->control('tipo_de_tarjeta');
                     echo $this->Form->control('nombre_del_titular');
@@ -27,7 +27,7 @@
                     echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Guardar')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

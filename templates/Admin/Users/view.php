@@ -7,11 +7,11 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Editar User'), ['action' => 'edit', $user->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Eliminar User'), ['action' => 'delete', $user->id], ['confirm' => __('Seguro que quiere eliminar # {0}?', $user->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Lista de Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Nuevo User'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
@@ -56,7 +56,7 @@
                 </tr>
             </table>
             <div class="related">
-                <h4><?= __('Related Metodo De Pagos') ?></h4>
+                <h4><?= __('Metodo De Pagos') ?></h4>
                 <?php if (!empty($user->metodo_de_pagos)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -71,7 +71,7 @@
                             <th><?= __('User Id') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <th class="actions"><?= __('Acciones') ?></th>
                         </tr>
                         <?php foreach ($user->metodo_de_pagos as $metodoDePago) : ?>
                         <tr>
@@ -86,14 +86,14 @@
                             <td><?= h($metodoDePago->created) ?></td>
                             <td><?= h($metodoDePago->modified) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'MetodoDePagos', 'action' => 'view', $metodoDePago->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'MetodoDePagos', 'action' => 'edit', $metodoDePago->id]) ?>
+                                <?= $this->Html->link(__('Ver'), ['controller' => 'MetodoDePagos', 'action' => 'view', $metodoDePago->id]) ?>
+                                <?= $this->Html->link(__('Editar'), ['controller' => 'MetodoDePagos', 'action' => 'edit', $metodoDePago->id]) ?>
                                 <?= $this->Form->postLink(
-                                    __('Delete'),
+                                    __('Eliminar'),
                                     ['controller' => 'MetodoDePagos', 'action' => 'delete', $metodoDePago->id],
                                     [
                                         'method' => 'delete',
-                                        'confirm' => __('Are you sure you want to delete # {0}?', $metodoDePago->id),
+                                        'confirm' => __('Seguro que quiere eliminar # {0}?', $metodoDePago->id),
                                     ]
                                 ) ?>
                             </td>
@@ -104,7 +104,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Viajes') ?></h4>
+                <h4><?= __('Viajes') ?></h4>
                 <?php if (!empty($user->viajes)) : ?>
                 <div class="table-responsive">
                     <table>
@@ -121,7 +121,7 @@
                             <th><?= __('Promocion Id') ?></th>
                             <th><?= __('Created') ?></th>
                             <th><?= __('Modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <th class="actions"><?= __('Acciones') ?></th>
                         </tr>
                         <?php foreach ($user->viajes as $viaje) : ?>
                         <tr>
@@ -138,14 +138,14 @@
                             <td><?= h($viaje->created) ?></td>
                             <td><?= h($viaje->modified) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Viajes', 'action' => 'view', $viaje->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Viajes', 'action' => 'edit', $viaje->id]) ?>
+                                <?= $this->Html->link(__('Ver'), ['controller' => 'Viajes', 'action' => 'view', $viaje->id]) ?>
+                                <?= $this->Html->link(__('Editar'), ['controller' => 'Viajes', 'action' => 'edit', $viaje->id]) ?>
                                 <?= $this->Form->postLink(
-                                    __('Delete'),
+                                    __('Eliminar'),
                                     ['controller' => 'Viajes', 'action' => 'delete', $viaje->id],
                                     [
                                         'method' => 'delete',
-                                        'confirm' => __('Are you sure you want to delete # {0}?', $viaje->id),
+                                        'confirm' => __('Seguro que quiere eliminar # {0}?', $viaje->id),
                                     ]
                                 ) ?>
                             </td>
