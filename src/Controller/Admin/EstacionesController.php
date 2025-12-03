@@ -17,6 +17,7 @@ class EstacionesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+
     public function index()
     {
         $query = $this->Estaciones->find();

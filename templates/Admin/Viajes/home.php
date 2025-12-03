@@ -6,7 +6,7 @@
         <div class="feature-highlight">
             <h2>🗺️ Monitoreo en Tiempo Real</h2>
             <p>Visualiza la ubicación de todas las estaciones de carga y vehículos en un mapa interactivo con actualización en tiempo real.</p>
-            <a href="/admin/viajes/monitoring-map" class="btn btn-success">Abrir Mapa de Monitoreo →</a>
+            <a href="/admin/viajes/mapa" class="btn btn-success">Abrir Mapa de Monitoreo →</a>
         </div>
 
         <div class="dashboard-grid">

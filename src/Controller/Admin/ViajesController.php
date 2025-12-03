@@ -18,6 +18,57 @@ class ViajesController extends AppController
         // Aqui no hay nada
     }
 
+    /**
+     * Mapa de monitoreo en tiempo real
+     * Muestra todas las estaciones y vehículos en un mapa interactivo
+     */
+    public function mapa()
+    {
+        // Obtener todos los vehículos
+        $VehiculosTable = $this->fetchTable('Vehiculos');
+        $vehiculos = $VehiculosTable->find()
+            ->contain(['Modelos'])
+            ->toArray();
+
+        // Obtener todas las estaciones
+        $EstacionesTable = $this->fetchTable('Estaciones');
+        $estaciones = $EstacionesTable->find()->toArray();
+
+        // Transformar datos para el formato que espera la vista
+        $vehiculosData = array_map(function ($vehiculo) {
+            return [
+                'id' => $vehiculo->id,
+                'numero_de_serie' => $vehiculo->numero_de_serie,
+                'latitude' => (float)$vehiculo->latitud,
+                'longitude' => (float)$vehiculo->longitud,
+                'status' => $vehiculo->estado,
+                'battery_level' => (int)$vehiculo->nivel_de_bateria,
+                'estacion_id' => $vehiculo->estacion_id,
+                'model' => [
+                    'name' => isset($vehiculo->modelo) ? $vehiculo->modelo->nombre_del_modelo : 'N/A'
+                ]
+            ];
+        }, $vehiculos);
+
+        // Transformar datos de estaciones
+        $estacionesData = array_map(function ($estacion) {
+            return [
+                'id' => $estacion->id,
+                'name' => $estacion->nombre,
+                'latitude' => (float)$estacion->latitud,
+                'longitude' => (float)$estacion->longitud,
+                'capacidad' => $estacion->capacidad,
+                'direccion' => $estacion->direccion
+            ];
+        }, $estaciones);
+
+        // Enviar datos a la vista
+        $this->set([
+            'vehiculos' => $vehiculosData,
+            'estaciones' => $estacionesData
+        ]);
+    }
+
     public function index()
     {
         $query = $this->Viajes->find()
