@@ -11,19 +11,63 @@ class UsersController extends AppController
         $this->Authentication->addUnauthenticatedActions(['login', 'add']);
     }
 
+    public function index()
+    {
+        $users = $this->paginate($this->Users->find());
+        $this->set(compact('users'));
+    }
+
+    public function view($id = null)
+    {
+        // Si no se proporciona ID, usar el del usuario autenticado
+        if ($id === null) {
+            $identity = $this->Authentication->getIdentity();
+            if (!$identity) {
+                $this->Flash->error(__('Debes estar autenticado para ver tu perfil.'));
+                return $this->redirect(['action' => 'login']);
+            }
+            $id = $identity->id;
+        }
+        
+        $user = $this->Users->get($id);
+        $this->set(compact('user'));
+    }
+
+    public function edit($id = null)
+    {
+        if ($id === null) {
+            $identity = $this->Authentication->getIdentity();
+            if (!$identity) {
+                $this->Flash->error(__('Debes estar autenticado para editar tu perfil.'));
+                return $this->redirect(['action' => 'login']);
+            }
+            $id = $identity->id;
+        }
+        
+        $user = $this->Users->get($id);
+        
+        if ($this->request->is(['post', 'put', 'patch'])) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Los datos han sido actualizados.'));
+                return $this->redirect(['action' => 'view', $user->id]);
+            }
+            $this->Flash->error(__('No se pudieron actualizar los datos. Inténtalo de nuevo.'));
+        }
+        $this->set(compact('user'));
+    }
+
     public function login()
     {
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
 
-        // Si el login es válido
         if ($result && $result->isValid()) {
             
-            // 1. Obtenemos quién es el usuario y qué rol tiene
             $identity = $this->Authentication->getIdentity();
-            $rol = (string)$identity->rol; // Asegúrate que en tu BD la columna se llame 'rol'
+            $rol = (string)$identity->rol; 
 
-            // 2. Definimos a dónde va cada uno
+          
             if ($rol === 'Administrador') {
                 // El Admin se va a su zona privada
                 $target = [
@@ -43,8 +87,6 @@ class UsersController extends AppController
                 $target = ['controller' => 'Pages', 'action' => 'display', 'home'];
             }
 
-            // 3. Redirigimos ignorando el 'redirect' anterior para forzar la ruta segura según el rol
-            // Nota: Si prefieres que CakePHP recuerde la URL anterior, usa getQuery('redirect', $target)
             return $this->redirect($target);
         }
 

@@ -34,7 +34,7 @@
             <nav class="d-none d-md-flex align-items-center">
                 <?= $this->Html->link('Inicio', '/', ['class' => 'nav-link']) ?>
                 <?= $this->Html->link('Catálogo', ['controller' => 'Vehiculos', 'action' => 'index'], ['class' => 'nav-link']) ?>
-                <?= $this->Html->link('Sucursales', ['controller' => 'Lotes', 'action' => 'index'], ['class' => 'nav-link']) ?>
+                <?= $this->Html->link('Perfil', ['controller' => 'Users', 'action' => 'view'], ['class' => 'nav-link']) ?>
             </nav>
 
             <div class="d-none d-md-flex gap-2 align-items-center">
@@ -59,18 +59,13 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
         <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title brand-mark">Menú</h5>
+            <h5 class="offcanvas-title brand-mark">Hola este es el menu</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body d-flex flex-column gap-3 p-4">
             <?= $this->Html->link('Inicio', '/', ['class' => 'nav-link text-dark fs-5']) ?>
             <?= $this->Html->link('Ver Catálogo', ['controller' => 'Vehiculos', 'action' => 'index'], ['class' => 'nav-link text-dark fs-5']) ?>
             <?= $this->Html->link('Sucursales', ['controller' => 'Lotes', 'action' => 'index'], ['class' => 'nav-link text-dark fs-5']) ?>
-            
-            <hr class="my-3">
-            
-            <?= $this->Html->link('Iniciar Sesión', ['controller' => 'Users', 'action' => 'login'], ['class' => 'btn btn-ghost btn-pill w-100 justify-content-center']) ?>
-            <?= $this->Html->link('Crear Cuenta', ['controller' => 'Users', 'action' => 'add'], ['class' => 'btn btn-accent btn-pill w-100 justify-content-center']) ?>
         </div>
     </div>
 
