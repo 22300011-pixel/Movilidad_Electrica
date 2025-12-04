@@ -4,99 +4,118 @@
  * @var \App\Model\Entity\Promocion $promocion
  */
 ?>
-<div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Promocion'), ['action' => 'edit', $promocion->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Promocion'), ['action' => 'delete', $promocion->id], ['confirm' => __('Are you sure you want to delete # {0}?', $promocion->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Promociones'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Promocion'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column column-80">
-        <div class="promociones view content">
-            <h3><?= h($promocion->codigo) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Codigo') ?></th>
-                    <td><?= h($promocion->codigo) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($promocion->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Porcentaje De Descuento') ?></th>
-                    <td><?= $this->Number->format($promocion->porcentaje_de_descuento) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Fecha De Expiracion') ?></th>
-                    <td><?= h($promocion->fecha_de_expiracion) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($promocion->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($promocion->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Activa') ?></th>
-                    <td><?= $promocion->activa ? __('Yes') : __('No'); ?></td>
-                </tr>
-            </table>
-            <div class="related">
-                <h4><?= __('Related Viajes') ?></h4>
-                <?php if (!empty($promocion->viajes)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Hora Inicio') ?></th>
-                            <th><?= __('Hora Fin') ?></th>
-                            <th><?= __('Costo Total') ?></th>
-                            <th><?= __('Estado Viaje') ?></th>
-                            <th><?= __('User Id') ?></th>
-                            <th><?= __('Vehiculo Id') ?></th>
-                            <th><?= __('Metodo De Pago Id') ?></th>
-                            <th><?= __('Estacion Id') ?></th>
-                            <th><?= __('Promocion Id') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($promocion->viajes as $viaje) : ?>
-                        <tr>
-                            <td><?= h($viaje->id) ?></td>
-                            <td><?= h($viaje->hora_inicio) ?></td>
-                            <td><?= h($viaje->hora_fin) ?></td>
-                            <td><?= h($viaje->costo_total) ?></td>
-                            <td><?= h($viaje->estado_viaje) ?></td>
-                            <td><?= h($viaje->user_id) ?></td>
-                            <td><?= h($viaje->vehiculo_id) ?></td>
-                            <td><?= h($viaje->metodo_de_pago_id) ?></td>
-                            <td><?= h($viaje->estacion_id) ?></td>
-                            <td><?= h($viaje->promocion_id) ?></td>
-                            <td><?= h($viaje->created) ?></td>
-                            <td><?= h($viaje->modified) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Viajes', 'action' => 'view', $viaje->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Viajes', 'action' => 'edit', $viaje->id]) ?>
-                                <?= $this->Form->postLink(
-                                    __('Delete'),
-                                    ['controller' => 'Viajes', 'action' => 'delete', $viaje->id],
-                                    [
-                                        'method' => 'delete',
-                                        'confirm' => __('Are you sure you want to delete # {0}?', $viaje->id),
-                                    ]
-                                ) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
+<div class="vehiculo-detail-container">
+    <div class="vh-detail-nav">
+        <?= $this->Html->link(__('← Volver a Promociones'), ['action' => 'index'], ['class' => 'btn-back']) ?>
+    </div>
+
+    <div class="vh-detail-content">
+        <div class="vh-detail-left">
+            <div class="detail-section">
+                <div class="status-item">
+                    <div class="label">Estado</div>
+                    <span class="badge status <?= $promocion->activa ? 'disponible' : 'en-mantenimiento' ?>">
+                        <?= $promocion->activa ? 'Activa' : 'Inactiva' ?>
+                    </span>
                 </div>
+                
+                <div class="status-item">
+                    <div class="label">Descuento</div>
+                    <div class="detail-value" style="font-size: 2rem; color: var(--tx-primary);">
+                        <?= $this->Number->format($promocion->porcentaje_de_descuento) ?>%
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h4>Acciones</h4>
+                <div class="action-list">
+                    <?= $this->Html->link(__('Editar'), 
+                        ['action' => 'edit', $promocion->id], 
+                        ['class' => 'btn-link', 'style' => 'display: block; margin-bottom: 10px;']) ?>
+                    
+                    <?= $this->Form->postLink(__('Eliminar'), 
+                        ['action' => 'delete', $promocion->id], 
+                        [
+                            'class' => 'btn-link',
+                            'style' => 'display: block; margin-bottom: 10px; color: #ef4444;',
+                            'confirm' => __('¿Eliminar esta promoción?')
+                        ]) ?>
+                    
+                    <?= $this->Html->link(__('Nueva Promoción'), 
+                        ['action' => 'add'], 
+                        ['class' => 'btn-link', 'style' => 'display: block;']) ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="vh-detail-right">
+            <h2><?= h($promocion->codigo) ?></h2>
+            
+            <div class="detail-section">
+                <h3>Información</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">ID</div>
+                        <div class="detail-value">#<?= $this->Number->format($promocion->id) ?></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Código</div>
+                        <div class="detail-value"><?= h($promocion->codigo) ?></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Fecha de Expiración</div>
+                        <div class="detail-value"><?= h($promocion->fecha_de_expiracion) ?></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Creada</div>
+                        <div class="detail-value"><?= h($promocion->created->format('d/m/Y H:i')) ?></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Modificada</div>
+                        <div class="detail-value"><?= h($promocion->modified->format('d/m/Y H:i')) ?></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3>Viajes Relacionados</h3>
+                <?php if (!empty($promocion->viajes)) : ?>
+                    <div class="viajes-list">
+                        <?php foreach ($promocion->viajes as $viaje): ?>
+                            <div class="viaje-item">
+                                <div class="viaje-header">
+                                    <div class="viaje-id">Viaje #<?= h($viaje->id) ?></div>
+                                    <div class="viaje-status <?= h($viaje->estado_viaje) ?>">
+                                        <?= h($viaje->estado_viaje) ?>
+                                    </div>
+                                </div>
+                                <div class="viaje-body">
+                                    <div class="viaje-row">
+                                        <div class="viaje-label">Costo Total</div>
+                                        <div class="viaje-value">$<?= h($viaje->costo_total) ?></div>
+                                    </div>
+                                    <div class="viaje-row">
+                                        <div class="viaje-label">Hora Inicio</div>
+                                        <div class="viaje-value"><?= h($viaje->hora_inicio) ?></div>
+                                    </div>
+                                </div>
+                                <div class="viaje-actions">
+                                    <?= $this->Html->link(__('Ver'), 
+                                        ['controller' => 'Viajes', 'action' => 'view', $viaje->id], 
+                                        ['class' => 'link-small']) ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else: ?>
+                    <div class="empty-state">
+                        No hay viajes relacionados con esta promoción.
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

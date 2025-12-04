@@ -839,7 +839,6 @@ footer a:hover {
     border: 2px dashed #e6eef8;
     font-size: 1rem;
 }
-
 /* Modelos Index*/
 .modelos.index .page-header {
     display: flex;
@@ -964,6 +963,12 @@ footer a:hover {
     border: 1px solid #e2e8f0;
     background: white;
     transition: all 0.2s;
+}
+.promociones-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 /*Users View */
@@ -1185,12 +1190,20 @@ footer a:hover {
     box-shadow: 0 6px 18px rgba(185,28,28,0.05);
 }
 
+.promocion-icon {
+    background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+    color: var(--tx-primary);
+}
 
 
+.promocion-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 10px;
+}
 
-
-
-
-
-
-
+.promocion-dates {
+    color: #64748b;
+    font-size: 0.85rem;
+}
