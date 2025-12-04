@@ -74,7 +74,7 @@ $this->assign('title', 'Bienvenido a la Movilidad del Futuro');
     <div class="container text-center">
         <h3 class="fw-bold mb-3">¿Listo para conducir?</h3>
         <p class="mb-4 text-muted">Crea tu cuenta en segundos y empieza tu viaje.</p>
-        <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'register']) ?>" class="btn btn-primary px-5 py-3 rounded-pill fw-bold shadow-sm">
+        <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'add']) ?>" class="btn btn-primary px-5 py-3 rounded-pill fw-bold shadow-sm">
             Crear Cuenta Gratis
         </a>
     </div>
