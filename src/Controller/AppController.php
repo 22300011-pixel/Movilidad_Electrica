@@ -19,7 +19,7 @@ class AppController extends Controller
             'display', 
             'login', 
             'register', 
-            'add',
+            'add', // Para registro de usuarios
             'forgotPassword'
         ]);
     }
@@ -34,14 +34,14 @@ class AppController extends Controller
         
         $identity = $this->Authentication->getIdentity();
 
-        
-        //BLOQUEO DE SEGURIDAD ADMIN
+        // ---------------------------------------------------------
+        // 1. BLOQUEO DE SEGURIDAD ADMIN
+        // ---------------------------------------------------------
         if ($prefix === 'Admin') {
             if (!$identity || (string)$identity->rol !== 'Administrador') {
                 $this->Flash->error(__('Acceso denegado. Área exclusiva de administradores.'));
                 
                 if ($identity) {
-    
                     $this->redirect(['prefix' => false, 'controller' => 'Viajes', 'action' => 'dashboard']);
                     return;
                 }
@@ -52,23 +52,30 @@ class AppController extends Controller
             return;
         }
 
+        // ---------------------------------------------------------
+        // 2. LÓGICA DE USUARIOS LOGUEADOS
+        // ---------------------------------------------------------
         
-        // USUARIOS LOGUEADOS
-    
-        
-        //Administrador
+        // A) Administrador
         if ($identity && (string)$identity->rol === 'Administrador') {
             return;
         }
 
-        // Cliente
+        // B) Cliente
         if ($identity && (string)$identity->rol === 'Cliente') {
             $allowed = [
-                'metodospago' => ['index', 'view', 'select', 'pay'],
-                'vehiculos'   => ['index', 'view', 'search'],
-                'viajes'      => ['add', 'end', 'finish', 'index', 'view', 'dashboard'], 
-                'users'       => ['view', 'edit', 'profile', 'logout'], 
-                'pages'       => ['display']
+                // Corrección: 'metododepagos' (coincide con el archivo Controller)
+                'metododepagos' => ['index', 'view', 'add', 'edit', 'delete'], 
+                
+                // Agregado para que funcione tu Dashboard
+                'estaciones'    => ['index', 'view', 'home'],
+                'modelos'       => ['index', 'view'],
+                'promociones'       => ['index', 'view'],
+                
+                'vehiculos'     => ['index', 'view', 'search'],
+                'viajes'        => ['add', 'end', 'finish', 'index', 'view', 'dashboard'], 
+                'users'         => ['view', 'edit', 'profile', 'logout'], 
+                'pages'         => ['display']
             ];
 
             // Validación de Perfil
@@ -77,7 +84,6 @@ class AppController extends Controller
                 
                 if ($targetId !== null && (string)$targetId !== (string)$identity->id) {
                     $this->Flash->error(__('No tiene permisos para editar/visualizar otro perfil.'));
-                    
                     $this->redirect(['controller' => 'Viajes', 'action' => 'dashboard']);
                     return;
                 }
@@ -89,28 +95,33 @@ class AppController extends Controller
             }
 
             $this->Flash->error(__('No tiene permisos para acceder a esta acción.'));
-      
             $this->redirect(['controller' => 'Viajes', 'action' => 'dashboard']);
             return;
         }
         
-        // PÚBLICO GENERAL (Sin Loguear)
+        // ---------------------------------------------------------
+        // 3. PÚBLICO GENERAL (Sin Loguear)
+        // ---------------------------------------------------------
         if (!$identity) {
             $guestAllowed = [
                 'pages'       => ['display', 'home'],
-                'users'       => ['login','add', 'forgotpassword', 'forgot-password'],
+                'users'       => ['login', 'add', 'forgotpassword', 'forgot-password', 'register'], 
                 'promociones' => ['index', 'view'], 
-                'estaciones'  => ['index', 'view'],
+                
+                
+                'estaciones'  => ['index', 'view', 'home'],
+                
                 'modelos'     => ['index', 'view'],
                 'vehiculos'   => ['index', 'view'] 
             ];
 
             if (isset($guestAllowed[$controller]) && in_array($action, $guestAllowed[$controller], true)) {
+                
+                $this->Authentication->addUnauthenticatedActions([$this->request->getParam('action')]);
                 return;
             }
 
             $this->Flash->error(__('Debe iniciar sesión para acceder a esta acción.'));
-         
             $this->redirect(['controller' => 'Users', 'action' => 'login']);
             return;
         }
