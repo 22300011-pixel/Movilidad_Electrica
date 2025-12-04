@@ -5,63 +5,49 @@
  */
 ?>
 <div class="vehiculos index content">
-    <?= $this->Html->link(__('New Vehiculo'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Vehiculos') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('numero_de_serie') ?></th>
-                    <th><?= $this->Paginator->sort('estado') ?></th>
-                    <th><?= $this->Paginator->sort('nivel_de_bateria') ?></th>
-                    <th><?= $this->Paginator->sort('latitud') ?></th>
-                    <th><?= $this->Paginator->sort('longitud') ?></th>
-                    <th><?= $this->Paginator->sort('estacion_id') ?></th>
-                    <th><?= $this->Paginator->sort('modelo_id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($vehiculos as $vehiculo): ?>
-                <tr>
-                    <td><?= $this->Number->format($vehiculo->id) ?></td>
-                    <td><?= h($vehiculo->numero_de_serie) ?></td>
-                    <td><?= h($vehiculo->estado) ?></td>
-                    <td><?= $this->Number->format($vehiculo->nivel_de_bateria) ?></td>
-                    <td><?= $this->Number->format($vehiculo->latitud) ?></td>
-                    <td><?= $this->Number->format($vehiculo->longitud) ?></td>
-                    <td><?= $vehiculo->hasValue('estacion') ? $this->Html->link($vehiculo->estacion->nombre, ['controller' => 'Estaciones', 'action' => 'view', $vehiculo->estacion->id]) : '' ?></td>
-                    <td><?= $vehiculo->hasValue('modelo') ? $this->Html->link($vehiculo->modelo->nombre_del_modelo, ['controller' => 'Modelos', 'action' => 'view', $vehiculo->modelo->id]) : '' ?></td>
-                    <td><?= h($vehiculo->created) ?></td>
-                    <td><?= h($vehiculo->modified) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $vehiculo->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $vehiculo->id]) ?>
-                        <?= $this->Form->postLink(
-                            __('Delete'),
-                            ['action' => 'delete', $vehiculo->id],
-                            [
-                                'method' => 'delete',
-                                'confirm' => __('Are you sure you want to delete # {0}?', $vehiculo->id),
-                            ]
-                        ) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+    <div class="page-header">
+        <h3><?=('Vehículos eléctricos') ?></h3>
     </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+
+    <div class="vehiculos-grid">
+        <?php foreach ($vehiculos as $vehiculo): ?>
+            <article class="vehiculo-card">
+                <div class="vh-image">
+                    <?php
+                    $fotoUrl = null;
+                    if ($vehiculo->hasValue('modelo') && !empty($vehiculo->modelo->fotos)) {
+                        $firstFoto = $vehiculo->modelo->fotos[0];
+                        $raw = $firstFoto->url_foto ?? '';
+                        if (preg_match('/^https?:\/\//', $raw) || strpos($raw, '/') === 0) {
+                            $fotoUrl = $raw;
+                        } elseif (!empty($raw)) {
+                            $fotoUrl = '/uploads/fotos/' . $raw;
+                        }
+                    }
+                    ?>
+
+                    <?php if ($fotoUrl): ?>
+                        <img src="<?= h($fotoUrl) ?>" alt="<?= h($vehiculo->hasValue('modelo') ? $vehiculo->modelo->nombre_del_modelo : 'Vehículo') ?>" loading="lazy" />
+                    <?php endif; ?>
+                </div>
+                <div class="vh-body">
+                    <h4 class="vh-title"><?= h($vehiculo->hasValue('modelo') ? $vehiculo->modelo->nombre_del_modelo : $vehiculo->numero_de_serie) ?></h4>
+                    <p class="vh-sub">Serie: <strong><?= h($vehiculo->numero_de_serie) ?></strong></p>
+
+                    <div class="vh-meta">
+                        <span class="badge status <?= strtolower(preg_replace('/\\s+/', '-', $vehiculo->estado)) ?>"><?= h($vehiculo->estado) ?></span>
+                        <span class="battery"><?= $this->Number->format($vehiculo->nivel_de_bateria) ?>%</span>
+                    </div>
+
+                    <div class="vh-info">
+                        <div class="vh-location"><?= $vehiculo->hasValue('estacion') ? h($vehiculo->estacion->nombre) : 'En ruta' ?></div>
+                        <div class="vh-coords">Lat: <?= h(number_format($vehiculo->latitud ?? 0, 6)) ?>, Lon: <?= h(number_format($vehiculo->longitud ?? 0, 6)) ?></div>
+                    </div>
+                </div>
+                <div class="vh-actions">
+                    <?= $this->Html->link(__('Ver'), ['action' => 'view', $vehiculo->id], ['class' => 'btn-link']) ?>
+                </div>
+            </article>
+        <?php endforeach; ?>
     </div>
 </div>

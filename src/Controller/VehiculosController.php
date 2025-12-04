@@ -18,7 +18,7 @@ class VehiculosController extends AppController
     public function index()
     {
         $query = $this->Vehiculos->find()
-            ->contain(['Estaciones', 'Modelos']);
+            ->contain(['Estaciones', 'Modelos' => ['Fotos']]);
         $vehiculos = $this->paginate($query);
 
         $this->set(compact('vehiculos'));
@@ -33,7 +33,7 @@ class VehiculosController extends AppController
      */
     public function view($id = null)
     {
-        $vehiculo = $this->Vehiculos->get($id, contain: ['Estaciones', 'Modelos', 'Viajes']);
+        $vehiculo = $this->Vehiculos->get($id, contain: ['Estaciones', 'Modelos' => ['Fotos'], 'Viajes']);
         $this->set(compact('vehiculo'));
     }
 
