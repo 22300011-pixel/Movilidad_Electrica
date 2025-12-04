@@ -21,7 +21,6 @@ body {
     min-height: 100vh;
 }
 
-
 .nv-gradient {
     background: var(--tx-grad-header);
     backdrop-filter: blur(10px);
@@ -59,22 +58,23 @@ body {
     opacity: 1;
 }
 
-
 .btn-pill { border-radius: 50px; }
 
 .btn-ghost {
-    background: transparent;
-    border: 2px solid rgba(15, 23, 42, 0.1);
+    background: white;
+    border: 1px solid #e2e8f0;
     color: var(--tx-ink);
     font-weight: 600;
     text-decoration: none;
-    padding: 0.375rem 1.2rem;
+    padding: 0.4rem 1.2rem;
+    border-radius: 8px;
+    transition: all 0.2s;
 }
 
 .btn-ghost:hover {
-    background: rgba(15, 23, 42, 0.05);
+    background: #f8fafc;
+    border-color: #cbd5e1;
     color: var(--tx-primary);
-    border-color: var(--tx-primary);
 }
 
 .btn-accent {
@@ -85,6 +85,7 @@ body {
     padding: 0.4rem 1.5rem;
     text-decoration: none;
     transition: filter 0.2s;
+    border-radius: 8px;
 }
 
 .btn-accent:hover {
@@ -112,7 +113,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* SECCIÓN HERO (Portada Principal) */
+/* Hero Section */
 .hero-section {
     background: linear-gradient(135deg, #f6f8fc 0%, #e0f2fe 100%);
     padding: 80px 0;
@@ -127,7 +128,6 @@ footer a:hover {
     color: var(--tx-ink);
     letter-spacing: -1px;
 }
-
 
 .cat-card {
     background: white;
@@ -159,50 +159,7 @@ footer a:hover {
     font-size: 24px;
 }
 
-/*  Mensajes Flash */
-.message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    max-width: 400px;
-    width: 90%;
-}
-
-.message div {
-    padding: 15px 20px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border-left: 4px solid;
-    animation: fadeIn 0.3s ease;
-}
-
-.message div.success {
-    background: #d4edda;
-    border-left-color: #28a745;
-    color: #155724;
-}
-
-.message div.error {
-    background: #f8d7da;
-    border-left-color: #dc3545;
-    color: #721c24;
-}
-
-.message div.info {
-    background: #d1ecf1;
-    border-left-color: #17a2b8;
-    color: #0c5460;
-}
-
-.message div.warning {
-    background: #fff3cd;
-    border-left-color: #ffc107;
-    color: #856404;
-}
-
-/* Estilo de login */
+/* Login */
 .login-page {
     display: flex;
     align-items: center;
@@ -249,7 +206,6 @@ footer a:hover {
     border: none;
     cursor: pointer;
     font-weight: 600;
-
 }
 .btn-primary:hover {
     background: #24354a;
@@ -265,19 +221,17 @@ footer a:hover {
     text-decoration: none;
 }
 
-/* Vehículos Index Público  */
+/* Vehiculos Index */
 .vehiculos.index.content {
     padding: 24px;
     background: transparent;
 }
-
 .vehiculos.index.content h3 {
     font-size: 1.5rem;
     margin-bottom: 18px;
     color:  black;
     text-align: center;
 }
-
 .vehiculos .button {
     background: var(--tx-grad-btn);
     color: white;
@@ -288,7 +242,6 @@ footer a:hover {
     float: right;
     margin-top: -6px;
 }
-
 .vehiculos .table-responsive {
     background: white;
     border-radius: 12px;
@@ -296,13 +249,11 @@ footer a:hover {
     box-shadow: var(--tx-shadow);
     border: 1px solid #e6eef8;
 }
-
 .vehiculos table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
 }
-
 .vehiculos thead th {
     text-align: left;
     padding: 12px 10px;
@@ -310,28 +261,23 @@ footer a:hover {
     color: #374151;
     border-bottom: 2px solid #f1f5f9;
 }
-
 .vehiculos tbody td {
     padding: 10px;
     border-bottom: 1px solid #f3f6fb;
     color: #475569;
 }
-
 .vehiculos tbody tr:hover {
     background: linear-gradient(90deg, rgba(99,102,241,0.03), rgba(6,182,212,0.02));
 }
-
 .vehiculos .actions a,
 .vehiculos .actions form {
     margin-right: 6px;
 }
-
 .vehiculos .actions a {
     color: var(--tx-primary);
     text-decoration: none;
     font-weight: 600;
 }
-
 .vehiculos .paginator {
     margin-top: 14px;
     display: flex;
@@ -339,7 +285,6 @@ footer a:hover {
     justify-content: space-between;
     gap: 12px;
 }
-
 .vehiculos .pagination a,
 .vehiculos .pagination span {
     display: inline-block;
@@ -350,20 +295,18 @@ footer a:hover {
     text-decoration: none;
     border: 1px solid transparent;
 }
-
 .vehiculos .pagination a:hover {
     background: #f8fafc;
     border-color: #e6eef8;
 }
 
-
+/* Vehiculos Grid/Cards */
 .vehiculos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 18px;
     margin-top: 18px;
 }
-
 .vehiculo-card {
     background: white;
     border-radius: 12px;
@@ -372,7 +315,6 @@ footer a:hover {
     display: flex;
     flex-direction: column;
 }
-
 .vehiculo-card .vh-image {
     display: flex;
     align-items: center;
@@ -380,19 +322,16 @@ footer a:hover {
     padding: 18px;
     background: linear-gradient(180deg, #ffffff, #fbfdff);
 }
-
 .vehiculo-card .vh-body {
     padding: 14px 16px;
     flex: 1 1 auto;
 }
-
 .vh-title {
     margin: 0 0 6px 0;
     font-size: 1.05rem;
     color: var(--tx-ink);
 }
 .vh-sub { margin: 0 0 10px 0; color: #6b7280; font-size: 0.9rem; }
-
 .badge.status { 
     padding: 6px 8px; 
     border-radius: 999px; 
@@ -400,37 +339,27 @@ footer a:hover {
     color: white; 
     font-weight: 700; 
 }
-.badge.status.disponible { 
-    background: #10b981; 
-}
-.badge.status.en-uso { 
-    background: #ef4444; 
-}
-.badge.status.bateria-baja { 
-    background: #f59e0b; 
-}
-.badge.status.en-mantenimiento {
-     background: #6b7280; 
-}
-.battery { 
-    color: #374151; 
-    font-weight: 600;
- }
-
+.badge.status.disponible { background: #10b981; }
+.badge.status.en-uso { background: #ef4444; }
+.badge.status.bateria-baja { background: #f59e0b; }
+.badge.status.en-mantenimiento { background: #6b7280; }
+.battery { color: #374151; font-weight: 600; }
 .vh-info { 
     font-size: 0.85rem; 
     color: #475569; 
     display: flex; 
     justify-content: space-between; 
     gap: 8px; 
-    margin-bottom: 12px; }
+    margin-bottom: 12px; 
+}
 .vh-actions { 
     padding: 10px 16px;
-     border-top: 1px solid #f3f6fb; 
-     display: flex;
-      gap: 10px; 
+    border-top: 1px solid #f3f6fb; 
+    display: flex;
+    gap: 10px; 
 }
-.vh-actions .btn-link { padding: 8px 12px; 
+.vh-actions .btn-link { 
+    padding: 8px 12px; 
     border-radius: 8px; 
     text-decoration: none; 
     color: black; 
@@ -441,10 +370,9 @@ footer a:hover {
 .vh-actions .btn-link:hover { 
     background: #f8fafc; 
     border-color: #e6eef8;
- }
+}
 
-
-/* Vehiculo view Public */
+/* Vehiculo Detail */
 .vehiculo-detail-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -454,13 +382,11 @@ footer a:hover {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     font-family: 'Segoe UI', system-ui, sans-serif;
 }
-
 .vh-detail-nav {
     margin-bottom: 32px;
     padding-bottom: 16px;
     border-bottom: 1px solid #eef2f7;
 }
-
 .btn-back {
     display: inline-flex;
     align-items: center;
@@ -474,21 +400,16 @@ footer a:hover {
     border: 2px solid #e6eef8;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .btn-back:hover {
     background: #f0f9ff;
     border-color: #2563eb;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
 }
-
-
 .vh-detail-content {
     display: flex;
     gap: 32px;
     margin-top: 24px;
 }
-
-/* Estado y Acciones */
 .vh-detail-left {
     flex: 1;
     display: flex;
@@ -496,7 +417,6 @@ footer a:hover {
     gap: 24px;
     min-width: 280px;
 }
-
 .vh-detail-status {
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     border: 2px solid #e6eef8;
@@ -504,13 +424,11 @@ footer a:hover {
     padding: 24px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-
 .status-item {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
-
 .status-item .label {
     font-size: 0.875rem;
     color: #64748b;
@@ -518,23 +436,7 @@ footer a:hover {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
-.badge.status {
-    display: inline-block;
-    padding: 6px 16px;
-    background: #dcfce7;
-    color: #166534;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.875rem;
-    text-transform: capitalize;
-    border: 2px solid #bbf7d0;
-}
-
-.battery-container {
-    margin-top: 8px;
-}
-
+.battery-container { margin-top: 8px; }
 .battery-bar {
     width: 100%;
     height: 14px;
@@ -544,14 +446,12 @@ footer a:hover {
     margin-bottom: 8px;
     border: 2px solid #e2e8f0;
 }
-
 .battery-fill {
     height: 100%;
     background: linear-gradient(90deg, #10b981, #22c55e, #06b6d4);
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
-
 .battery-text {
     font-size: 1.125rem;
     font-weight: 700;
@@ -559,7 +459,6 @@ footer a:hover {
     text-align: center;
     display: block;
 }
-
 .vh-detail-actions {
     background: white;
     border: 2px solid #e6eef8;
@@ -567,7 +466,6 @@ footer a:hover {
     padding: 24px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-
 .vh-detail-actions h4 {
     margin: 0 0 20px 0;
     font-size: 0.95rem;
@@ -578,7 +476,6 @@ footer a:hover {
     padding-bottom: 12px;
     border-bottom: 2px solid #eef2f7;
 }
-
 .action-list {
     list-style: none;
     padding: 0;
@@ -587,7 +484,6 @@ footer a:hover {
     flex-direction: column;
     gap: 12px;
 }
-
 .action-link {
     display: flex;
     align-items: center;
@@ -601,32 +497,24 @@ footer a:hover {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     gap: 12px;
 }
-
 .action-link::before {
     content: "→";
     font-weight: bold;
     color: #2563eb;
     transition: transform 0.3s ease;
 }
-
 .action-link:hover {
     background: linear-gradient(135deg, #f0f9ff 0%, #e6f4ff 100%);
     border-color: #2563eb;
     box-shadow: 0 4px 16px rgba(37, 99, 235, 0.15);
 }
-
-.action-link:hover::before {
-    transform: translateX(4px);
-}
-
-/* Información detallada */
+.action-link:hover::before { transform: translateX(4px); }
 .vh-detail-right {
     flex: 2;
     display: flex;
     flex-direction: column;
     gap: 28px;
 }
-
 .vh-detail-right h2 {
     margin: 0 0 8px 0;
     font-size: 2rem;
@@ -637,8 +525,6 @@ footer a:hover {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
-
-/* Secciones de información */
 .detail-section {
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     border: 2px solid #e6eef8;
@@ -647,12 +533,10 @@ footer a:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .detail-section:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
-
 .detail-section h3 {
     margin: 0 0 24px 0;
     font-size: 1rem;
@@ -663,12 +547,7 @@ footer a:hover {
     padding-bottom: 16px;
     border-bottom: 2px solid #eef2f7;
 }
-
-.detail-grid {
-    display: grid;
-    gap: 24px;
-}
-
+.detail-grid { display: grid; gap: 24px; }
 .detail-item {
     display: flex;
     flex-direction: column;
@@ -679,12 +558,10 @@ footer a:hover {
     border: 2px solid #eef2f7;
     transition: all 0.3s ease;
 }
-
 .detail-item:hover {
     border-color: #2563eb;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
 }
-
 .detail-label {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -692,13 +569,11 @@ footer a:hover {
     color: #64748b;
     font-weight: 700;
 }
-
 .detail-value {
     font-size: 1.125rem;
     color: #0f172a;
     font-weight: 600;
 }
-
 .detail-value a {
     color: #2563eb;
     text-decoration: none;
@@ -706,19 +581,15 @@ footer a:hover {
     border-bottom: 2px solid transparent;
     transition: all 0.3s ease;
 }
-
 .detail-value a:hover {
     color: #1d4ed8;
     border-bottom-color: #2563eb;
 }
-
-/* Viajes */
 .viajes-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
-
 .viaje-item {
     background: white;
     border: 2px solid #e6eef8;
@@ -726,13 +597,11 @@ footer a:hover {
     overflow: hidden;
     transition: all 0.3s ease;
 }
-
 .viaje-item:hover {
     border-color: #2563eb;
     box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
     transform: translateY(-2px);
 }
-
 .viaje-header {
     display: flex;
     justify-content: space-between;
@@ -741,13 +610,7 @@ footer a:hover {
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     border-bottom: 2px solid #eef2f7;
 }
-
-.viaje-id {
-    font-weight: 700;
-    color: #0f172a;
-    font-size: 1rem;
-}
-
+.viaje-id { font-weight: 700; color: #0f172a; font-size: 1rem; }
 .viaje-status {
     font-size: 0.75rem;
     padding: 6px 16px;
@@ -757,38 +620,16 @@ footer a:hover {
     letter-spacing: 0.5px;
     border: 2px solid;
 }
-
-.viaje-status.completado {
-    background: #dcfce7;
-    color: #166534;
-    border-color: #bbf7d0;
-}
-
-.viaje-status.en-curso {
-    background: #fef3c7;
-    color: #92400e;
-    border-color: #fde68a;
-}
-
-.viaje-status.cancelado {
-    background: #fee2e2;
-    color: #991b1b;
-    border-color: #fecaca;
-}
-
+.viaje-status.completado { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+.viaje-status.en-curso { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+.viaje-status.cancelado { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
 .viaje-body {
     padding: 20px 24px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 24px;
 }
-
-.viaje-row {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
+.viaje-row { display: flex; flex-direction: column; gap: 6px; }
 .viaje-label {
     font-size: 0.75rem;
     color: #64748b;
@@ -796,13 +637,7 @@ footer a:hover {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
-.viaje-value {
-    font-size: 1rem;
-    color: #0f172a;
-    font-weight: 600;
-}
-
+.viaje-value { font-size: 1rem; color: #0f172a; font-weight: 600; }
 .viaje-actions {
     padding: 16px 24px;
     display: flex;
@@ -810,7 +645,6 @@ footer a:hover {
     border-top: 2px solid #eef2f7;
     background: linear-gradient(135deg, #fafbfc 0%, #f5f7fa 100%);
 }
-
 .link-small {
     font-size: 0.875rem;
     color: #2563eb;
@@ -822,13 +656,11 @@ footer a:hover {
     background: white;
     transition: all 0.3s ease;
 }
-
 .link-small:hover {
     background: #f0f9ff;
     border-color: #2563eb;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
 }
-
 .empty-state {
     text-align: center;
     padding: 40px 24px;
@@ -839,18 +671,15 @@ footer a:hover {
     border: 2px dashed #e6eef8;
     font-size: 1rem;
 }
-/* Modelos Index*/
+
+/* Modelos */
 .modelos.index .page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
-}
-
-.modelos.index .page-header {
     position: relative;
 }
-
 .modelos.index .page-header h3 {
     position: absolute;
     left: 50%;
@@ -859,14 +688,12 @@ footer a:hover {
     text-align: center;
     color: #000000; 
 }
-
 .modelos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 18px;
     margin-top: 18px;
 }
-
 .modelo-card {
     background: white;
     border-radius: 12px;
@@ -876,12 +703,10 @@ footer a:hover {
     flex-direction: column;
     transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .modelo-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 32px rgba(2,6,23,0.12);
 }
-
 .md-image {
     display: flex;
     align-items: center;
@@ -890,32 +715,24 @@ footer a:hover {
     background: linear-gradient(180deg, #ffffff, #fbfdff);
     min-height: 120px;
 }
-
-.md-body {
-    padding: 14px 16px;
-    flex: 1 1 auto;
-}
-
+.md-body { padding: 14px 16px; flex: 1 1 auto; }
 .md-title {
     margin: 0 0 6px 0;
     font-size: 1.05rem;
     font-weight: 600;
     color: #0f172a;
 }
-
 .md-brand {
     margin: 0 0 4px 0;
     font-size: 0.9rem;
     color: var(--tx-primary);
     font-weight: 500;
 }
-
 .md-type {
     margin: 0 0 10px 0;
     font-size: 0.85rem;
     color: #64748b;
 }
-
 .md-specs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -924,14 +741,12 @@ footer a:hover {
     border-top: 1px solid #e2e8f0;
     border-bottom: 1px solid #e2e8f0;
 }
-
 .spec-item {
     display: flex;
     flex-direction: column;
     gap: 2px;
     text-align: center;
 }
-
 .spec-label {
     font-size: 0.7rem;
     text-transform: uppercase;
@@ -939,20 +754,17 @@ footer a:hover {
     font-weight: 600;
     letter-spacing: 0.5px;
 }
-
 .spec-value {
     font-size: 0.85rem;
     font-weight: 600;
     color: #0f172a;
 }
-
 .md-actions {
     padding: 10px 16px;
     display: flex;
     gap: 8px;
     justify-content: center;
 }
-
 .md-actions .btn-link {
     padding: 6px 10px;
     border-radius: 6px;
@@ -964,26 +776,144 @@ footer a:hover {
     background: white;
     transition: all 0.2s;
 }
-.promociones-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+
+/* =========================================
+   MÉTODOS DE PAGO (INDEX & VIEW)
+   ========================================= */
+
+.metodoDePagos.index.content,
+.metodoDePagos.view.content {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.promocion-icon {
-    background: linear-gradient(135deg, #e0f2fe, #dbeafe);
-    color: var(--tx-primary);
+/* Título */
+.metodoDePagos h3 {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    color: var(--tx-ink);
+    font-weight: 700;
+    display: inline-block;
 }
 
-.promocion-info {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 10px;
+/* Tabla de Index */
+.metodoDePagos .table-responsive {
+    background: white;
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: var(--tx-shadow);
+    border: 1px solid #e6eef8;
+    overflow: hidden;
 }
 
-.promocion-dates {
-    color: #64748b;
+.metodoDePagos table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.metodoDePagos thead th {
+    background: linear-gradient(180deg, #f8fafc, #f1f5f9);
+    text-align: left;
+    padding: 16px 20px;
+    font-weight: 700;
+    color: #475569;
     font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.metodoDePagos thead th a { color: #475569; text-decoration: none; }
+
+.metodoDePagos tbody td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    vertical-align: middle;
+}
+
+.metodoDePagos tbody tr:last-child td { border-bottom: none; }
+.metodoDePagos tbody tr:hover { background-color: #f8fafc; }
+
+/* Acciones en Tabla */
+.metodoDePagos .actions { white-space: nowrap; text-align: right; }
+.metodoDePagos .actions a {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+.metodoDePagos .actions a[href*="view"] { color: var(--tx-primary); background: rgba(37,99,235,0.1); }
+.metodoDePagos .actions a[href*="edit"] { color: var(--tx-accent); background: rgba(0,194,168,0.1); }
+.metodoDePagos .actions form { display: inline; }
+.metodoDePagos .actions a[href*="delete"], 
+.metodoDePagos .actions button { color: #ef4444; background: rgba(239,68,68,0.1); border: none; cursor: pointer; padding: 6px 12px; border-radius: 6px; }
+
+/* Paginador */
+.metodoDePagos .paginator {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+.metodoDePagos .pagination { list-style: none; padding: 0; display: flex; gap: 5px; }
+.metodoDePagos .pagination a, 
+.metodoDePagos .pagination span {
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    color: var(--tx-ink);
+}
+.metodoDePagos .pagination .active a,
+.metodoDePagos .pagination .active span {
+    background: var(--tx-primary);
+    color: white;
+    border-color: var(--tx-primary);
+}
+
+
+.view-card {
+    background: white;
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: var(--tx-shadow);
+    border: 1px solid #e6eef8;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+
+.view-card table { margin: 0; }
+.view-card th {
+    width: 30%;
+    background: #f8fafc;
+    border-right: 1px solid #f1f5f9;
+    color: #475569;
+    font-weight: 600;
+}
+.view-card td { color: #1e293b; font-weight: 500; }
+
+
+.related h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--tx-ink);
+    font-weight: 700;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.related .table-responsive {
+    box-shadow: none; 
+    border: 1px solid #e2e8f0;
 }
