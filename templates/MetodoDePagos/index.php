@@ -5,47 +5,50 @@
  */
 ?>
 <div class="metodoDePagos index content">
-    <?= $this->Html->link(__('New Metodo De Pago'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Metodo De Pagos') ?></h3>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3><?= __('Métodos de Pago') ?></h3>
+        <?= $this->Html->link(__('Nuevo Método'), ['action' => 'add'], ['class' => 'btn-accent']) ?>
+    </div>
+
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('tipo_de_tarjeta') ?></th>
-                    <th><?= $this->Paginator->sort('nombre_del_titular') ?></th>
-                    <th><?= $this->Paginator->sort('cvv') ?></th>
-                    <th><?= $this->Paginator->sort('fecha_de_vencimiento') ?></th>
-                    <th><?= $this->Paginator->sort('es_predeterminado') ?></th>
-                    <th><?= $this->Paginator->sort('alias') ?></th>
-                    <th><?= $this->Paginator->sort('user_id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th><?= $this->Paginator->sort('id', '#') ?></th>
+                    <th><?= $this->Paginator->sort('alias', 'Alias') ?></th>
+                    <th><?= $this->Paginator->sort('tipo_de_tarjeta', 'Tipo') ?></th>
+                    <th><?= $this->Paginator->sort('nombre_del_titular', 'Titular') ?></th>
+                    <th><?= $this->Paginator->sort('fecha_de_vencimiento', 'Vencimiento') ?></th>
+                    <th><?= $this->Paginator->sort('es_predeterminado', 'Predeterminado') ?></th>
+                    <th><?= $this->Paginator->sort('user_id', 'Usuario') ?></th>
+                    <th class="actions"><?= __('Acciones') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($metodoDePagos as $metodoDePago): ?>
                 <tr>
                     <td><?= $this->Number->format($metodoDePago->id) ?></td>
+                    <td><strong><?= h($metodoDePago->alias) ?></strong></td>
                     <td><?= h($metodoDePago->tipo_de_tarjeta) ?></td>
                     <td><?= h($metodoDePago->nombre_del_titular) ?></td>
-                    <td><?= h($metodoDePago->cvv) ?></td>
                     <td><?= h($metodoDePago->fecha_de_vencimiento) ?></td>
-                    <td><?= h($metodoDePago->es_predeterminado) ?></td>
-                    <td><?= h($metodoDePago->alias) ?></td>
+                    <td>
+                        <?php if($metodoDePago->es_predeterminado): ?>
+                            <span class="badge status disponible" style="background:var(--tx-primary);">Sí</span>
+                        <?php else: ?>
+                            <span style="color: #94a3b8;">No</span>
+                        <?php endif; ?>
+                    </td>
                     <td><?= $metodoDePago->hasValue('user') ? $this->Html->link($metodoDePago->user->username, ['controller' => 'Users', 'action' => 'view', $metodoDePago->user->id]) : '' ?></td>
-                    <td><?= h($metodoDePago->created) ?></td>
-                    <td><?= h($metodoDePago->modified) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $metodoDePago->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $metodoDePago->id]) ?>
+                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $metodoDePago->id]) ?>
+                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $metodoDePago->id]) ?>
                         <?= $this->Form->postLink(
-                            __('Delete'),
+                            __('Borrar'),
                             ['action' => 'delete', $metodoDePago->id],
                             [
-                                'method' => 'delete',
-                                'confirm' => __('Are you sure you want to delete # {0}?', $metodoDePago->id),
+                                'confirm' => __('¿Estás seguro de eliminar {0}?', $metodoDePago->alias),
                             ]
                         ) ?>
                     </td>
@@ -54,14 +57,12 @@
             </tbody>
         </table>
     </div>
+
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->prev('< ' . __('Ant.')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Sig.') . ' >') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>
