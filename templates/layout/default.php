@@ -36,18 +36,45 @@
             </nav>
 
             <div class="d-none d-md-flex gap-2 align-items-center">
-                <?= $this->Html->link(
-                    '<i class="fa-solid fa-user me-2"></i>Login',
-                    ['controller' => 'Users', 'action' => 'login'],
-                    ['class' => 'btn btn-ghost btn-pill', 'escapeTitle' => false]
-                ) ?>
-                
-                <?= $this->Html->link(
-                    'Registrarse',
-                    ['controller' => 'Users', 'action' => 'add'],
-                    ['class' => 'btn btn-accent btn-pill shadow-sm']
-                ) ?>
-            </div>
+                <?php
+$identity = $this->request->getAttribute('identity');
+$avatar = '/img/Placeholder.jpg';
+if ($identity && $identity->get('avatar')) {
+    $avatar = '/img/profiles/' . h($identity->get('avatar'));
+}
+?>
+<?php if ($identity): ?>
+    <div class="d-flex align-items-center">
+        <?= $this->Html->link(
+            $this->Html->image($avatar, [
+                'alt' => h($identity->get('name') ?? $identity->get('username') ?: 'Usuario'),
+                'class' => 'rounded-circle',
+                'style' => 'width:36px;height:36px;object-fit:cover;margin-right:8px;'
+            ]) . '<strong>' . h($identity->get('name') ?? $identity->get('username')) . '</strong>',
+            ['controller' => 'Users', 'action' => 'view', $identity->get('id') ?? $identity->getIdentifier()],
+            ['escape' => false, 'class' => 'd-flex align-items-center text-decoration-none text-dark']
+        ) ?>
+
+        <?= $this->Form->postLink(
+            __('Salir'),
+            ['prefix' => false, 'controller' => 'Users', 'action' => 'logout'],
+            ['class' => 'btn btn-outline-secondary btn-sm ms-2', 'escape' => false]
+        ) ?>
+    </div>
+<?php else: ?>
+    <?= $this->Html->link(
+        '<i class="fa-solid fa-user me-2"></i>Login',
+        ['controller' => 'Users', 'action' => 'login'],
+        ['class' => 'btn btn-ghost btn-pill', 'escapeTitle' => false]
+    ) ?>
+
+    <?= $this->Html->link(
+        'Registrarse',
+        ['controller' => 'Users', 'action' => 'add'],
+        ['class' => 'btn btn-accent btn-pill shadow-sm']
+    ) ?>
+<?php endif; ?>
+</div>
 
             <button class="btn btn-light d-md-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
                 <i class="fa fa-bars fa-lg"></i>
