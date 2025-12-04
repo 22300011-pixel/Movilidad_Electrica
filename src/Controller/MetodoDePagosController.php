@@ -3,13 +3,16 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-/**
- * MetodoDePagos Controller
- *
- * @property \App\Model\Table\MetodoDePagosTable $MetodoDePagos
- */
+use Cake\Datasource\Exception\RecordNotFoundException;
+
 class MetodoDePagosController extends AppController
 {
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->MetodoDePagos = $this->getTableLocator()->get('MetodoDePagos');
+    }
+
     /**
      * Index method
      *
@@ -18,7 +21,7 @@ class MetodoDePagosController extends AppController
     public function index()
     {
         $query = $this->MetodoDePagos->find()
-            ->contain(['Users']);
+            ->contain(['Users']); // añadir relaciones si las necesitas
         $metodoDePagos = $this->paginate($query);
 
         $this->set(compact('metodoDePagos'));
@@ -29,11 +32,21 @@ class MetodoDePagosController extends AppController
      *
      * @param string|null $id Metodo De Pago id.
      * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $metodoDePago = $this->MetodoDePagos->get($id, contain: ['Users', 'Viajes']);
+        if ($id === null) {
+            $this->Flash->error(__('Registro inválido.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
+        try {
+            $metodoDePago = $this->MetodoDePagos->get($id, contain: ['Users', 'Viajes']);
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->error(__('Registro no encontrado.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
         $this->set(compact('metodoDePago'));
     }
 
@@ -48,12 +61,12 @@ class MetodoDePagosController extends AppController
         if ($this->request->is('post')) {
             $metodoDePago = $this->MetodoDePagos->patchEntity($metodoDePago, $this->request->getData());
             if ($this->MetodoDePagos->save($metodoDePago)) {
-                $this->Flash->success(__('The metodo de pago has been saved.'));
-
+                $this->Flash->success(__('El método de pago ha sido guardado.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The metodo de pago could not be saved. Please, try again.'));
+            $this->Flash->error(__('No se pudo guardar el método de pago. Por favor intente de nuevo.'));
         }
+
         $users = $this->MetodoDePagos->Users->find('list', limit: 200)->all();
         $this->set(compact('metodoDePago', 'users'));
     }
@@ -63,20 +76,30 @@ class MetodoDePagosController extends AppController
      *
      * @param string|null $id Metodo De Pago id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $metodoDePago = $this->MetodoDePagos->get($id, contain: []);
+        if ($id === null) {
+            $this->Flash->error(__('Registro inválido.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
+        try {
+            $metodoDePago = $this->MetodoDePagos->get($id);
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->error(__('Registro no encontrado.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $metodoDePago = $this->MetodoDePagos->patchEntity($metodoDePago, $this->request->getData());
             if ($this->MetodoDePagos->save($metodoDePago)) {
-                $this->Flash->success(__('The metodo de pago has been saved.'));
-
+                $this->Flash->success(__('El método de pago ha sido actualizado.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The metodo de pago could not be saved. Please, try again.'));
+            $this->Flash->error(__('No se pudo actualizar el método de pago. Por favor intente de nuevo.'));
         }
+
         $users = $this->MetodoDePagos->Users->find('list', limit: 200)->all();
         $this->set(compact('metodoDePago', 'users'));
     }
@@ -86,16 +109,27 @@ class MetodoDePagosController extends AppController
      *
      * @param string|null $id Metodo De Pago id.
      * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $metodoDePago = $this->MetodoDePagos->get($id);
+
+        if ($id === null) {
+            $this->Flash->error(__('Registro inválido.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
+        try {
+            $metodoDePago = $this->MetodoDePagos->get($id);
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->error(__('Registro no encontrado.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
         if ($this->MetodoDePagos->delete($metodoDePago)) {
-            $this->Flash->success(__('The metodo de pago has been deleted.'));
+            $this->Flash->success(__('El método de pago ha sido eliminado.'));
         } else {
-            $this->Flash->error(__('The metodo de pago could not be deleted. Please, try again.'));
+            $this->Flash->error(__('No se pudo eliminar el método de pago. Por favor intente de nuevo.'));
         }
 
         return $this->redirect(['action' => 'index']);
