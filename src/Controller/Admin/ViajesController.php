@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AppController\Admin;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Viajes Controller
@@ -18,23 +19,20 @@ class ViajesController extends AppController
         // Aqui no hay nada
     }
 
-    /**
-     * Mapa de monitoreo en tiempo real
-     * Muestra todas las estaciones y vehículos en un mapa interactivo
-     */
+   
     public function mapa()
     {
-        // Obtener todos los vehículos
+
         $VehiculosTable = $this->fetchTable('Vehiculos');
         $vehiculos = $VehiculosTable->find()
             ->contain(['Modelos'])
             ->toArray();
 
-        // Obtener todas las estaciones
+      
         $EstacionesTable = $this->fetchTable('Estaciones');
         $estaciones = $EstacionesTable->find()->toArray();
 
-        // Transformar datos para el formato que espera la vista
+        
         $vehiculosData = array_map(function ($vehiculo) {
             return [
                 'id' => $vehiculo->id,
@@ -50,7 +48,6 @@ class ViajesController extends AppController
             ];
         }, $vehiculos);
 
-        // Transformar datos de estaciones
         $estacionesData = array_map(function ($estacion) {
             return [
                 'id' => $estacion->id,
@@ -62,7 +59,7 @@ class ViajesController extends AppController
             ];
         }, $estaciones);
 
-        // Enviar datos a la vista
+       
         $this->set([
             'vehiculos' => $vehiculosData,
             'estaciones' => $estacionesData
@@ -87,7 +84,18 @@ class ViajesController extends AppController
      */
     public function view($id = null)
     {
-        $viaje = $this->Viajes->get($id, contain: ['Users', 'Vehiculos', 'MetodoDePagos', 'Estaciones', 'Promociones']);
+        if ($id === null) {
+            $this->Flash->error(__('Registro inválido.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
+        try {
+            $viaje = $this->Viajes->get($id, contain: ['Users', 'Vehiculos', 'MetodoDePagos', 'Estaciones', 'Promociones']);
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->error(__('Registro no encontrado.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
         $this->set(compact('viaje'));
     }
 
@@ -125,7 +133,18 @@ class ViajesController extends AppController
      */
     public function edit($id = null)
     {
-        $viaje = $this->Viajes->get($id, contain: []);
+        if ($id === null) {
+            $this->Flash->error(__('Registro inválido.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
+        try {
+            $viaje = $this->Viajes->get($id, contain: []);
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->error(__('Registro no encontrado.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $viaje = $this->Viajes->patchEntity($viaje, $this->request->getData());
             if ($this->Viajes->save($viaje)) {
@@ -153,7 +172,19 @@ class ViajesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $viaje = $this->Viajes->get($id);
+
+        if ($id === null) {
+            $this->Flash->error(__('Registro inválido.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
+        try {
+            $viaje = $this->Viajes->get($id);
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->error(__('Registro no encontrado.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
         if ($this->Viajes->delete($viaje)) {
             $this->Flash->success(__('The viaje has been deleted.'));
         } else {

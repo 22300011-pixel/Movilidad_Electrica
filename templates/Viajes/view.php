@@ -7,11 +7,8 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Viaje'), ['action' => 'edit', $viaje->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Viaje'), ['action' => 'delete', $viaje->id], ['confirm' => __('Are you sure you want to delete # {0}?', $viaje->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Viajes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Viaje'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Nuevo Viaje'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">

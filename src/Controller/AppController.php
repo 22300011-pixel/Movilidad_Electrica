@@ -19,7 +19,7 @@ class AppController extends Controller
             'display', 
             'login', 
             'register', 
-            'add', // Para registro de usuarios
+            'add', 
             'forgotPassword'
         ]);
     }
@@ -34,9 +34,7 @@ class AppController extends Controller
         
         $identity = $this->Authentication->getIdentity();
 
-        // ---------------------------------------------------------
-        // 1. BLOQUEO DE SEGURIDAD ADMIN
-        // ---------------------------------------------------------
+        
         if ($prefix === 'Admin') {
             if (!$identity || (string)$identity->rol !== 'Administrador') {
                 $this->Flash->error(__('Acceso denegado. Área exclusiva de administradores.'));
@@ -52,33 +50,29 @@ class AppController extends Controller
             return;
         }
 
-        // ---------------------------------------------------------
-        // 2. LÓGICA DE USUARIOS LOGUEADOS
-        // ---------------------------------------------------------
-        
-        // A) Administrador
+       
         if ($identity && (string)$identity->rol === 'Administrador') {
             return;
         }
 
-        // B) Cliente
+       
         if ($identity && (string)$identity->rol === 'Cliente') {
             $allowed = [
-                // Corrección: 'metododepagos' (coincide con el archivo Controller)
+               
                 'metododepagos' => ['index', 'view', 'add', 'edit', 'delete'], 
                 
-                // Agregado para que funcione tu Dashboard
+                
                 'estaciones'    => ['index', 'view', 'home'],
                 'modelos'       => ['index', 'view'],
                 'promociones'       => ['index', 'view'],
                 
                 'vehiculos'     => ['index', 'view', 'search'],
-                'viajes'        => ['add', 'end', 'finish', 'index', 'view', 'dashboard'], 
-                'users'         => ['view', 'edit', 'profile', 'logout'], 
+                'viajes'        => ['add','index', 'view', 'dashboard'], 
+                'users'         => ['view', 'edit', 'logout'], 
                 'pages'         => ['display']
             ];
 
-            // Validación de Perfil
+      
             if ($controller === 'users' && in_array($action, ['edit', 'view', 'profile'], true)) {
                 $targetId = $this->request->getParam('pass.0') ?? $this->request->getQuery('id') ?? $this->request->getParam('id');
                 
@@ -98,14 +92,11 @@ class AppController extends Controller
             $this->redirect(['controller' => 'Viajes', 'action' => 'dashboard']);
             return;
         }
-        
-        // ---------------------------------------------------------
-        // 3. PÚBLICO GENERAL (Sin Loguear)
-        // ---------------------------------------------------------
+
         if (!$identity) {
             $guestAllowed = [
                 'pages'       => ['display', 'home'],
-                'users'       => ['login', 'add', 'forgotpassword', 'forgot-password', 'register'], 
+                'users'       => ['login', 'add'], 
                 'promociones' => ['index', 'view'], 
                 
                 

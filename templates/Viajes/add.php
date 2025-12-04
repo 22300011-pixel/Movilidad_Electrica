@@ -11,10 +11,6 @@
 ?>
 <div class="row">
     <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Viajes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
     </aside>
     <div class="column column-80">
         <div class="viajes form content">
@@ -33,7 +29,7 @@
                     echo $this->Form->control('promocion_id', ['options' => $promociones, 'empty' => true]);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Guardar')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

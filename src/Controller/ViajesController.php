@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Datasource\Exception\RecordNotFoundException;
+
 class ViajesController extends AppController
 {
 
     public function dashboard()
     {
-        // Render the dashboard view
         $this->render('dashboard');
     }
     
@@ -57,7 +58,18 @@ class ViajesController extends AppController
      */
     public function edit($id = null)
     {
-        $viaje = $this->Viajes->get($id, contain: []);
+        if ($id === null) {
+            $this->Flash->error(__('Registro inválido.')); 
+            return $this->redirect(['action' => 'index']);
+        }
+
+        try {
+            $viaje = $this->Viajes->get($id, contain: []);
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->error(__('Registro no encontrado.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $viaje = $this->Viajes->patchEntity($viaje, $this->request->getData());
             if ($this->Viajes->save($viaje)) {

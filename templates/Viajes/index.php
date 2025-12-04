@@ -5,7 +5,7 @@
  */
 ?>
 <div class="viajes index content">
-    <?= $this->Html->link(__('New Viaje'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Nuevo Viaje'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Viajes') ?></h3>
     <div class="table-responsive">
         <table>
@@ -57,15 +57,5 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>
