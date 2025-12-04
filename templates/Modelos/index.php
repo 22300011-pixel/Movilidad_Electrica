@@ -41,7 +41,7 @@
                 </div>
                 <div class="md-body">
                     <h4 class="md-title"><?= h($modelo->nombre_del_modelo) ?></h4>
-                    <p class="md-brand">📋 <?= h($modelo->marca) ?></p>
+                    <p class="md-brand"><?= h($modelo->marca) ?></p>
                     <p class="md-type">Tipo: <?= h($modelo->tipo_de_vehiculo) ?></p>
 
                     <div class="md-specs">

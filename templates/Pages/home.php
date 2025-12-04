@@ -66,6 +66,21 @@ $this->assign('title', 'Bienvenido a la Movilidad del Futuro');
                     <p class="text-muted small mb-0">Aprovecha descuentos exclusivos para nuevos usuarios.</p>
                 </a>
             </div>
+
+            <div class="col-md-4">
+                <a href="<?= $this->Url->build(['controller' => 'Viajes', 'action' => 'add']) ?>" class="cat-card p-4 h-100 text-decoration-none">
+                    <div class="cat-icon" style="color: var(--tx-accent);"><i class="fa-solid fa-car-side"></i></div>
+                    <h3 class="h5 fw-bold text-dark mb-2">Viajes</h3>
+                    <p class="text-muted small mb-0">Realiza un viaje con nuestros vehículos eléctricos.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="<?= $this->Url->build(['controller' => 'MetodoDepagos', 'action' => 'add']) ?>" class="cat-card p-4 h-100 text-decoration-none">
+                    <div class="cat-icon" style="color: var(--tx-accent);"><i class="fa-solid fa-credit-card"></i></div>
+                    <h3 class="h5 fw-bold text-dark mb-2">Metodo de Pagos</h3>
+                    <p class="text-muted small mb-0">Agrega un método de pago.</p>
+                </a>
+            </div>
         </div>
     </div>
 </section>
