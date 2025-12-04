@@ -19,7 +19,7 @@ class UsersController extends AppController
 
     public function view($id = null)
     {
-        // Si no se proporciona ID, usar el del usuario autenticado
+        
         if ($id === null) {
             $identity = $this->Authentication->getIdentity();
             if (!$identity) {
@@ -67,30 +67,31 @@ class UsersController extends AppController
             $identity = $this->Authentication->getIdentity();
             $rol = (string)$identity->rol; 
 
-          
+           
             if ($rol === 'Administrador') {
-                // El Admin se va a su zona privada
+             
                 $target = [
                     'prefix' => 'Admin', 
                     'controller' => 'Viajes', 
                     'action' => 'home'
                 ];
             } elseif ($rol === 'Cliente') {
-                // El Cliente se va a su dashboard
+                
                 $target = [
                     'prefix' => false, 
                     'controller' => 'Viajes', 
                     'action' => 'dashboard'
                 ];
             } else {
-                // Si existiera otro rol, lo mandamos al inicio general
+                
                 $target = ['controller' => 'Pages', 'action' => 'display', 'home'];
             }
 
+          
             return $this->redirect($target);
         }
 
-        // Si falla el login
+        
         if ($this->request->is('post') && !$result->isValid()) {
             $this->Flash->error(__('Usuario o contraseña incorrectos.'));
         }
@@ -101,7 +102,7 @@ class UsersController extends AppController
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
-            // Forzar rol Cliente por defecto al registrarse (seguridad)
+            
             $user->rol = 'Cliente'; 
             
             if ($this->Users->save($user)) {
