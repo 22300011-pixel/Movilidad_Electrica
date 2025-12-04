@@ -26,27 +26,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="detail-section">
-                <h4>Acciones</h4>
-                <div class="action-list">
-                    <?= $this->Html->link(__('Editar'), 
-                        ['action' => 'edit', $promocion->id], 
-                        ['class' => 'btn-link', 'style' => 'display: block; margin-bottom: 10px;']) ?>
-                    
-                    <?= $this->Form->postLink(__('Eliminar'), 
-                        ['action' => 'delete', $promocion->id], 
-                        [
-                            'class' => 'btn-link',
-                            'style' => 'display: block; margin-bottom: 10px; color: #ef4444;',
-                            'confirm' => __('¿Eliminar esta promoción?')
-                        ]) ?>
-                    
-                    <?= $this->Html->link(__('Nueva Promoción'), 
-                        ['action' => 'add'], 
-                        ['class' => 'btn-link', 'style' => 'display: block;']) ?>
-                </div>
-            </div>
         </div>
 
         <div class="vh-detail-right">
@@ -68,16 +47,6 @@
                     <div class="detail-item">
                         <div class="detail-label">Fecha de Expiración</div>
                         <div class="detail-value"><?= h($promocion->fecha_de_expiracion) ?></div>
-                    </div>
-                    
-                    <div class="detail-item">
-                        <div class="detail-label">Creada</div>
-                        <div class="detail-value"><?= h($promocion->created->format('d/m/Y H:i')) ?></div>
-                    </div>
-                    
-                    <div class="detail-item">
-                        <div class="detail-label">Modificada</div>
-                        <div class="detail-value"><?= h($promocion->modified->format('d/m/Y H:i')) ?></div>
                     </div>
                 </div>
             </div>

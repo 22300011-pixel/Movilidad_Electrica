@@ -45,15 +45,6 @@
             
             <div class="vh-actions">
                 <?= $this->Html->link(__('Ver'), ['action' => 'view', $promocion->id], ['class' => 'btn-link']) ?>
-                <?= $this->Html->link(__('Editar'), ['action' => 'edit', $promocion->id], ['class' => 'btn-link']) ?>
-                <?= $this->Form->postLink(
-                    __('Eliminar'),
-                    ['action' => 'delete', $promocion->id],
-                    [
-                        'class' => 'btn-link',
-                        'confirm' => __('¿Eliminar promoción #{0}?', $promocion->id),
-                    ]
-                ) ?>
             </div>
         </div>
         <?php endforeach; ?>
