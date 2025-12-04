@@ -4,58 +4,69 @@
  * @var iterable<\App\Model\Entity\Promocion> $promociones
  */
 ?>
-<div class="promociones index content">
-    <?= $this->Html->link(__('New Promocion'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Promociones') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('codigo') ?></th>
-                    <th><?= $this->Paginator->sort('porcentaje_de_descuento') ?></th>
-                    <th><?= $this->Paginator->sort('fecha_de_expiracion') ?></th>
-                    <th><?= $this->Paginator->sort('activa') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($promociones as $promocion): ?>
-                <tr>
-                    <td><?= $this->Number->format($promocion->id) ?></td>
-                    <td><?= h($promocion->codigo) ?></td>
-                    <td><?= $this->Number->format($promocion->porcentaje_de_descuento) ?></td>
-                    <td><?= h($promocion->fecha_de_expiracion) ?></td>
-                    <td><?= h($promocion->activa) ?></td>
-                    <td><?= h($promocion->created) ?></td>
-                    <td><?= h($promocion->modified) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $promocion->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $promocion->id]) ?>
-                        <?= $this->Form->postLink(
-                            __('Delete'),
-                            ['action' => 'delete', $promocion->id],
-                            [
-                                'method' => 'delete',
-                                'confirm' => __('Are you sure you want to delete # {0}?', $promocion->id),
-                            ]
-                        ) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+<div class="promociones index content vehiculos index content">
+    <div class="promociones-header">
+        <h3><?= __('Promociones') ?></h3>
+        <?= $this->Html->link(__('Nueva Promoción'), ['action' => 'add'], ['class' => 'button btn-accent']) ?>
     </div>
+
+    <div class="vehiculos-grid">
+        <?php foreach ($promociones as $promocion): ?>
+        <div class="cat-card">
+            <div class="vh-image">
+                <div class="promocion-icon cat-icon">
+                    <i class="fas fa-tag"></i>
+                </div>
+            </div>
+            
+            <div class="vh-body">
+                <h4 class="vh-title"><?= h($promocion->codigo) ?></h4>
+                <p class="vh-sub">
+                    <span class="badge status <?= $promocion->activa ? 'disponible' : 'en-mantenimiento' ?>">
+                        <?= $promocion->activa ? __('Activa') : __('Inactiva') ?>
+                    </span>
+                </p>
+                
+                <div class="promocion-info vh-info">
+                    <div>
+                        <strong><?= $this->Number->format($promocion->porcentaje_de_descuento) ?>%</strong><br>
+                        <small>Descuento</small>
+                    </div>
+                    <div>
+                        <strong><?= h($promocion->fecha_de_expiracion->format('d/m/Y')) ?></strong><br>
+                        <small>Expira</small>
+                    </div>
+                </div>
+                
+                <div class="promocion-dates">
+                    <small>Creada: <?= h($promocion->created->format('d/m/Y')) ?></small>
+                </div>
+            </div>
+            
+            <div class="vh-actions">
+                <?= $this->Html->link(__('Ver'), ['action' => 'view', $promocion->id], ['class' => 'btn-link']) ?>
+                <?= $this->Html->link(__('Editar'), ['action' => 'edit', $promocion->id], ['class' => 'btn-link']) ?>
+                <?= $this->Form->postLink(
+                    __('Eliminar'),
+                    ['action' => 'delete', $promocion->id],
+                    [
+                        'class' => 'btn-link',
+                        'confirm' => __('¿Eliminar promoción #{0}?', $promocion->id),
+                    ]
+                ) ?>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('primera')) ?>
+            <?= $this->Paginator->prev('< ' . __('anterior')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('siguiente') . ' >') ?>
+            <?= $this->Paginator->last(__('última') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(__('Página {{page}} de {{pages}}, mostrando {{current}} registro(s) de {{count}} total')) ?></p>
     </div>
 </div>
