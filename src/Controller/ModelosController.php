@@ -17,7 +17,7 @@ class ModelosController extends AppController
      */
     public function index()
     {
-        $query = $this->Modelos->find();
+        $query = $this->Modelos->find()->contain(['Fotos']);
         $modelos = $this->paginate($query);
 
         $this->set(compact('modelos'));

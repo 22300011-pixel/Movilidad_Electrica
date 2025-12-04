@@ -839,3 +839,135 @@ footer a:hover {
     border: 2px dashed #e6eef8;
     font-size: 1rem;
 }
+
+/* Modelos Index*/
+.modelos.index .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.modelos.index .page-header {
+    position: relative;
+}
+
+.modelos.index .page-header h3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    text-align: center;
+    color: #000000; 
+}
+
+.modelos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.modelo-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(2,6,23,0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.modelo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(2,6,23,0.12);
+}
+
+.md-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: linear-gradient(180deg, #ffffff, #fbfdff);
+    min-height: 120px;
+}
+
+.md-body {
+    padding: 14px 16px;
+    flex: 1 1 auto;
+}
+
+.md-title {
+    margin: 0 0 6px 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.md-brand {
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+    color: var(--tx-primary);
+    font-weight: 500;
+}
+
+.md-type {
+    margin: 0 0 10px 0;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.md-specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 10px 0;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: center;
+}
+
+.spec-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #94a3b8;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.spec-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.md-actions {
+    padding: 10px 16px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.md-actions .btn-link {
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--tx-primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1px solid #e2e8f0;
+    background: white;
+    transition: all 0.2s;
+}
+
+
+
+
+
+
