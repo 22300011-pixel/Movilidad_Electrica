@@ -19,11 +19,11 @@ class AppController extends Controller
             'display', 
             'login', 
             'register', 
+            'add',
             'forgotPassword'
         ]);
     }
 
-    // Mantenemos el : void, pero ajustamos la lógica interna
     public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
@@ -34,15 +34,14 @@ class AppController extends Controller
         
         $identity = $this->Authentication->getIdentity();
 
-        // ---------------------------------------------------------
-        // 1. BLOQUEO DE SEGURIDAD ADMIN
-        // ---------------------------------------------------------
+        
+        //BLOQUEO DE SEGURIDAD ADMIN
         if ($prefix === 'Admin') {
             if (!$identity || (string)$identity->rol !== 'Administrador') {
                 $this->Flash->error(__('Acceso denegado. Área exclusiva de administradores.'));
                 
                 if ($identity) {
-                    // CORRECCIÓN: Ejecutar redirect y luego return vacío
+    
                     $this->redirect(['prefix' => false, 'controller' => 'Viajes', 'action' => 'dashboard']);
                     return;
                 }
@@ -53,16 +52,16 @@ class AppController extends Controller
             return;
         }
 
-        // ---------------------------------------------------------
-        // 2. LÓGICA DE USUARIOS LOGUEADOS
-        // ---------------------------------------------------------
         
-        // A) Administrador
+        // USUARIOS LOGUEADOS
+    
+        
+        //Administrador
         if ($identity && (string)$identity->rol === 'Administrador') {
             return;
         }
 
-        // B) Cliente
+        // Cliente
         if ($identity && (string)$identity->rol === 'Cliente') {
             $allowed = [
                 'metodospago' => ['index', 'view', 'select', 'pay'],
@@ -78,7 +77,7 @@ class AppController extends Controller
                 
                 if ($targetId !== null && (string)$targetId !== (string)$identity->id) {
                     $this->Flash->error(__('No tiene permisos para editar/visualizar otro perfil.'));
-                    // CORRECCIÓN
+                    
                     $this->redirect(['controller' => 'Viajes', 'action' => 'dashboard']);
                     return;
                 }
@@ -90,18 +89,16 @@ class AppController extends Controller
             }
 
             $this->Flash->error(__('No tiene permisos para acceder a esta acción.'));
-            // CORRECCIÓN
+      
             $this->redirect(['controller' => 'Viajes', 'action' => 'dashboard']);
             return;
         }
-
-        // ---------------------------------------------------------
-        // 3. PÚBLICO GENERAL (Sin Loguear)
-        // ---------------------------------------------------------
+        
+        // PÚBLICO GENERAL (Sin Loguear)
         if (!$identity) {
             $guestAllowed = [
                 'pages'       => ['display', 'home'],
-                'users'       => ['login', 'register', 'forgotpassword', 'forgot-password'],
+                'users'       => ['login','add', 'forgotpassword', 'forgot-password'],
                 'promociones' => ['index', 'view'], 
                 'estaciones'  => ['index', 'view'],
                 'modelos'     => ['index', 'view'],
@@ -113,7 +110,7 @@ class AppController extends Controller
             }
 
             $this->Flash->error(__('Debe iniciar sesión para acceder a esta acción.'));
-            // CORRECCIÓN final
+         
             $this->redirect(['controller' => 'Users', 'action' => 'login']);
             return;
         }

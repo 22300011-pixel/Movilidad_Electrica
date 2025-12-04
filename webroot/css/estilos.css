@@ -158,3 +158,110 @@ footer a:hover {
     color: var(--tx-primary);
     font-size: 24px;
 }
+
+/*  Mensajes Flash */
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 400px;
+    width: 90%;
+}
+
+.message div {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-left: 4px solid;
+    animation: fadeIn 0.3s ease;
+}
+
+.message div.success {
+    background: #d4edda;
+    border-left-color: #28a745;
+    color: #155724;
+}
+
+.message div.error {
+    background: #f8d7da;
+    border-left-color: #dc3545;
+    color: #721c24;
+}
+
+.message div.info {
+    background: #d1ecf1;
+    border-left-color: #17a2b8;
+    color: #0c5460;
+}
+
+.message div.warning {
+    background: #fff3cd;
+    border-left-color: #ffc107;
+    color: #856404;
+}
+
+/* Estilo de login */
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+    background: #eef2f6;
+    padding: 20px;
+}
+.login-box {
+    width: 360px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(11,35,64,0.08);
+    text-align: left;
+}
+.login-box h2 {
+    margin: 0 0 20px 0;
+    color: #1b263b;
+    font-size: 1.25rem;
+}
+.form-login .input,
+.form-login input[type="text"],
+.form-login input[type="password"],
+.form-login input[type="email"],
+.form-login select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border: 1px solid #e3e8ee;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.form-actions {
+    text-align: right;
+    margin-top: 6px;
+}
+.btn-primary {
+    background: #2d4059;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+
+}
+.btn-primary:hover {
+    background: #24354a;
+}
+.login-footer {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #6b7a8a;
+}
+.login-footer a {
+    color: #2d4059;
+    text-decoration: none;
+}
+
